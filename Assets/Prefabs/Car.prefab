@@ -603,7 +603,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1574226965667518728}
   - component: {fileID: 4232746897173028319}
-  - component: {fileID: 2057613647389668933}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -682,20 +681,6 @@ MonoBehaviour:
   model: {fileID: 9100673879075777588}
   leftFrontWheel: {fileID: 1514529003136544479}
   rightFrontWheel: {fileID: 4021097748606677908}
---- !u!114 &2057613647389668933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199355967876789886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90851fd8eac91e342bfd71a4cc549da9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.PlayerController
-  speedAction: {fileID: -915219137148053301, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  steeringAction: {fileID: 4670176562449054021, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &9041217071885105768
 GameObject:
   m_ObjectHideFlags: 0
