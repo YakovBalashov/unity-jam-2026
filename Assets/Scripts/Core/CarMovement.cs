@@ -33,6 +33,8 @@ namespace RacingGame.Core
         private float _speedInput;
         private float _steerInput;
 
+        private float _currentTurnRate;
+
         private float _speedMultiplier = 1f;
         private float _speedModifierTimeLeft;
         private float _speedModifierTransitionAcceleration;
@@ -50,7 +52,6 @@ namespace RacingGame.Core
 
         private Renderer[] _modelRenderers;
         private MaterialPropertyBlock _propertyBlock;
-        private float _tintEndTime;
         private bool _isTinted;
 
         private Vector3 _modelStartLocalPosition;
@@ -96,6 +97,12 @@ namespace RacingGame.Core
 
             _modelRenderers = model.GetComponentsInChildren<Renderer>();
             _propertyBlock = new MaterialPropertyBlock();
+        }
+
+        private void Update()
+        {
+            if (!IsStunned)
+                transform.Rotate(0f, _currentTurnRate * Time.deltaTime, 0f, Space.World);
         }
 
         private void LateUpdate()
@@ -145,8 +152,11 @@ namespace RacingGame.Core
             if (grounded)
             {
                 float moveFactor = Mathf.Clamp01(speed / minSpeedForFullSteer);
-                float turn = (wheelAngle / maxWheelTurn) * turnStrength * moveFactor * Mathf.Sign(forwardSpeed);
-                transform.Rotate(0f, turn * dt, 0f, Space.World);
+                _currentTurnRate = (wheelAngle / maxWheelTurn) * turnStrength * moveFactor * Mathf.Sign(forwardSpeed);
+            }
+            else
+            {
+                _currentTurnRate = 0f;
             }
 
             SetWheelAngle(leftFrontWheel, wheelAngle);
@@ -156,6 +166,7 @@ namespace RacingGame.Core
         private void Stun(float duration)
         {
             _stunEndTime = Mathf.Max(_stunEndTime, Time.time + duration);
+            _currentTurnRate = 0f;
             ClearSpeedModifier();
             StopCar();
         }
