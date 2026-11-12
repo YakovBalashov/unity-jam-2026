@@ -655,6 +655,7 @@ MonoBehaviour:
     m_Bits: 8
   groundCheckDistance: 0.75
   tiltSpeed: 10
+  extraJumpGravity: 20
   turnStrength: 160
   maxWheelTurn: 25
   minSpeedForFullSteer: 2

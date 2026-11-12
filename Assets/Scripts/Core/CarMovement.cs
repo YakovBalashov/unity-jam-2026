@@ -17,6 +17,7 @@ namespace RacingGame.Core
         [SerializeField] private LayerMask groundMask;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private float tiltSpeed = 10f;
+        [SerializeField] private float extraJumpGravity;
 
         [Header("Steering")] [SerializeField] private float turnStrength;
         [SerializeField] private float maxWheelTurn;
@@ -137,6 +138,7 @@ namespace RacingGame.Core
             else
             {
                 _currentTurnRate = 0f;
+                sphereRigidBody.AddForce(Vector3.down * extraJumpGravity, ForceMode.Acceleration);
             }
 
             UpdateFrontWheels(forwardSpeed);
