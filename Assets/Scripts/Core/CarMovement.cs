@@ -16,7 +16,7 @@ namespace RacingGame.Core
         [Header("Ground")] [SerializeField] private float grip;
         [SerializeField] private LayerMask groundMask;
         [SerializeField] private float groundCheckDistance;
-        [SerializeField] private float tiltSpeed;
+        [SerializeField] private float tiltSpeed = 10f;
 
         [Header("Steering")] [SerializeField] private float turnStrength;
         [SerializeField] private float maxWheelTurn;
