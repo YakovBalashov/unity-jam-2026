@@ -13027,6 +13027,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: percentPerSecond
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: 'availableEffects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c3b4a74508390234e9c3fd85b9617955, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
