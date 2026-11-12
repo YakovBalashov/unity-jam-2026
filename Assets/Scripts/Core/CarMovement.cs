@@ -115,12 +115,7 @@ namespace RacingGame.Core
         private void FixedUpdate()
         {
             float dt = Time.fixedDeltaTime;
-
-            if (_speedModifierTimeLeft > 0f)
-            {
-                _speedModifierTimeLeft -= dt;
-                if (_speedModifierTimeLeft <= 0f) _speedMultiplier = 1f;
-            }
+            UpdateSpeedModifierTimer(dt);
 
             if (IsStunned)
             {
@@ -128,39 +123,20 @@ namespace RacingGame.Core
                 return;
             }
 
-            bool grounded = Physics.Raycast(sphereRigidBody.position, Vector3.down, groundCheckDistance, groundMask);
+            float forwardSpeed = Vector3.Dot(sphereRigidBody.linearVelocity, transform.forward);
 
-            Vector3 velocity = sphereRigidBody.linearVelocity;
-            Vector3 transformForward = transform.forward;
-            Vector3 transformRight = transform.right;
-
-            float forwardSpeed = Vector3.Dot(velocity, transformForward);
-
-            if (grounded)
+            if (IsGrounded())
             {
                 forwardSpeed = CalculateForwardSpeed(forwardSpeed, dt);
-
-                Vector3 lateral = Vector3.Dot(velocity, transformRight) * transformRight;
-                lateral = Vector3.Lerp(lateral, Vector3.zero, grip * dt);
-
-                sphereRigidBody.linearVelocity = transformForward * forwardSpeed + lateral + Vector3.up * velocity.y;
-            }
-
-            float speed = Mathf.Abs(forwardSpeed);
-            float wheelAngle = _steerInput * maxWheelTurn * steerBySpeedCurve.Evaluate(speed / maxSpeed);
-
-            if (grounded)
-            {
-                float moveFactor = Mathf.Clamp01(speed / minSpeedForFullSteer);
-                _currentTurnRate = (wheelAngle / maxWheelTurn) * turnStrength * moveFactor * Mathf.Sign(forwardSpeed);
+                ApplyGroundVelocity(forwardSpeed, dt);
+                _currentTurnRate = CalculateTurnRate(forwardSpeed);
             }
             else
             {
                 _currentTurnRate = 0f;
             }
 
-            SetWheelAngle(leftFrontWheel, wheelAngle);
-            SetWheelAngle(rightFrontWheel, wheelAngle);
+            UpdateFrontWheels(forwardSpeed);
         }
 
         private void Stun(float duration)
@@ -186,9 +162,7 @@ namespace RacingGame.Core
         {
             bool modifierActive = _speedModifierTimeLeft > 0f;
             bool boosting = modifierActive && _speedMultiplier > 1f;
-
             float input = boosting ? 1f : _speedInput;
-
             float target, rate;
 
             switch (input)
@@ -281,6 +255,50 @@ namespace RacingGame.Core
         {
             Vector3 e = wheel.localEulerAngles;
             wheel.localRotation = Quaternion.Euler(e.x, angle, e.z);
+        }
+        private void UpdateSpeedModifierTimer(float dt)
+        {
+            if (_speedModifierTimeLeft <= 0f) return;
+
+            _speedModifierTimeLeft -= dt;
+            if (_speedModifierTimeLeft <= 0f) _speedMultiplier = 1f;
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics.Raycast(sphereRigidBody.position, Vector3.down, groundCheckDistance, groundMask);
+        }
+
+        private void ApplyGroundVelocity(float forwardSpeed, float dt)
+        {
+            Vector3 velocity = sphereRigidBody.linearVelocity;
+
+            Vector3 sidewaysVelocity = Vector3.Dot(velocity, transform.right) * transform.right;
+            sidewaysVelocity = Vector3.Lerp(sidewaysVelocity, Vector3.zero, grip * dt);
+
+            sphereRigidBody.linearVelocity = transform.forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;
+        }
+
+        private float CalculateWheelAngle(float forwardSpeed)
+        {
+            float speed = Mathf.Abs(forwardSpeed);
+            return _steerInput * maxWheelTurn * steerBySpeedCurve.Evaluate(speed / maxSpeed);
+        }
+
+        private float CalculateTurnRate(float forwardSpeed)
+        {
+            float speed = Mathf.Abs(forwardSpeed);
+            float moveFactor = Mathf.Clamp01(speed / minSpeedForFullSteer);
+            float wheelAngle = CalculateWheelAngle(forwardSpeed);
+
+            return (wheelAngle / maxWheelTurn) * turnStrength * moveFactor * Mathf.Sign(forwardSpeed);
+        }
+
+        private void UpdateFrontWheels(float forwardSpeed)
+        {
+            float wheelAngle = CalculateWheelAngle(forwardSpeed);
+            SetWheelAngle(leftFrontWheel, wheelAngle);
+            SetWheelAngle(rightFrontWheel, wheelAngle);
         }
     }
 }
