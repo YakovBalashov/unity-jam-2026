@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace RacingGame.Core
 {
+    [DefaultExecutionOrder(-100)]
+    [RequireComponent(typeof(Rigidbody))]
     public class CarMovement : MonoBehaviour
     {
-        [SerializeField] private Rigidbody sphereRigidBody;
+        [SerializeField] private SphereCollider sphereCollider;
 
         [Header("Speed")] [SerializeField] private float maxSpeed;
         [SerializeField] private float maxReverseSpeed;
@@ -29,14 +31,18 @@ namespace RacingGame.Core
         [Header("Visual")] [SerializeField] private Transform model;
         [SerializeField] private Transform leftFrontWheel;
         [SerializeField] private Transform rightFrontWheel;
+        
+        private Rigidbody _rigidbody;
+        private Vector3 _groundCheckLocalOrigin;
+
+        private Vector3 Forward => _rigidbody.rotation * Vector3.forward;
+        private Vector3 Right => _rigidbody.rotation * Vector3.right;
 
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
 
         private float _speedInput;
         private float _steerInput;
-
-        private float _currentTurnRate;
-
+        
         private float _speedMultiplier = 1f;
         private float _speedModifierTimeLeft;
         private float _speedModifierTransitionAcceleration;
@@ -92,11 +98,16 @@ namespace RacingGame.Core
             if (particlesPrefab)
                 Instantiate(particlesPrefab, transform.position, Quaternion.identity);
         }
+        
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            Vector3 sphereCenter = sphereCollider.transform.TransformPoint(sphereCollider.center);
+            _groundCheckLocalOrigin = transform.InverseTransformPoint(sphereCenter);
+        }
 
         private void Start()
         {
-            sphereRigidBody.transform.parent = null;
-
             _modelStartLocalPosition = model.localPosition;
             _modelStartLocalRotation = model.localRotation;
 
@@ -104,15 +115,8 @@ namespace RacingGame.Core
             _propertyBlock = new MaterialPropertyBlock();
         }
 
-        private void Update()
-        {
-            if (!IsStunned)
-                transform.Rotate(0f, _currentTurnRate * Time.deltaTime, 0f, Space.World);
-        }
-
         private void LateUpdate()
         {
-            transform.position = sphereRigidBody.transform.position;
             UpdateModelVisual();
         }
 
@@ -123,23 +127,26 @@ namespace RacingGame.Core
 
             if (IsStunned)
             {
+                _rigidbody.angularVelocity = Vector3.zero;
                 StopCar();
                 return;
             }
 
-            float forwardSpeed = Vector3.Dot(sphereRigidBody.linearVelocity, transform.forward);
+            float forwardSpeed = Vector3.Dot(_rigidbody.linearVelocity, Forward);
+            float turnRate = 0f;
 
             if (IsGround())
             {
                 forwardSpeed = CalculateForwardSpeed(forwardSpeed, dt);
                 ApplyGroundVelocity(forwardSpeed, dt);
-                _currentTurnRate = CalculateTurnRate(forwardSpeed);
+                turnRate = CalculateTurnRate(forwardSpeed);
             }
             else
             {
-                _currentTurnRate = 0f;
-                sphereRigidBody.AddForce(Vector3.down * extraJumpGravity, ForceMode.Acceleration);
+                _rigidbody.AddForce(Vector3.down * extraJumpGravity, ForceMode.Acceleration);
             }
+            
+            _rigidbody.angularVelocity = new Vector3(0f, turnRate * Mathf.Deg2Rad, 0f);
 
             UpdateFrontWheels(forwardSpeed);
         }
@@ -147,14 +154,13 @@ namespace RacingGame.Core
         private void Stun(float duration)
         {
             _stunEndTime = Mathf.Max(_stunEndTime, Time.time + duration);
-            _currentTurnRate = 0f;
             ClearSpeedModifier();
             StopCar();
         }
 
         private void StopCar()
         {
-            sphereRigidBody.linearVelocity = Vector3.up * sphereRigidBody.linearVelocity.y;
+            _rigidbody.linearVelocity = Vector3.up * _rigidbody.linearVelocity.y;
         }
 
         private void ClearSpeedModifier()
@@ -274,8 +280,8 @@ namespace RacingGame.Core
 
         private bool IsGround()
         {
-            if (Physics.Raycast(sphereRigidBody.position, Vector3.down, out RaycastHit hit, groundCheckDistance,
-                    groundMask))
+            Vector3 origin = _rigidbody.position + _rigidbody.rotation * _groundCheckLocalOrigin;
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, groundCheckDistance, groundMask))
             {
                 _groundNormal = hit.normal;
                 return true;
@@ -287,13 +293,13 @@ namespace RacingGame.Core
 
         private void ApplyGroundVelocity(float forwardSpeed, float dt)
         {
-            Vector3 velocity = sphereRigidBody.linearVelocity;
+            Vector3 velocity = _rigidbody.linearVelocity;
 
-            Vector3 sidewaysVelocity = Vector3.Dot(velocity, transform.right) * transform.right;
+            Vector3 sidewaysVelocity = Vector3.Dot(velocity, Right) * Right;
             sidewaysVelocity = Vector3.Lerp(sidewaysVelocity, Vector3.zero, grip * dt);
 
-            sphereRigidBody.linearVelocity =
-                transform.forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;
+            _rigidbody.linearVelocity =
+                Forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;
         }
 
         private float CalculateWheelAngle(float forwardSpeed)
