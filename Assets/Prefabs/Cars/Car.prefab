@@ -650,7 +650,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckDistance: 0.6
+  groundCheckDistance: 0.75
+  tiltSmoothing: 10
   turnStrength: 160
   maxWheelTurn: 25
   minSpeedForFullSteer: 2

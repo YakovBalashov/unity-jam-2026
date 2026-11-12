@@ -16,6 +16,7 @@ namespace RacingGame.Core
         [Header("Ground")] [SerializeField] private float grip;
         [SerializeField] private LayerMask groundMask;
         [SerializeField] private float groundCheckDistance;
+        [SerializeField] private float tiltSpeed;
 
         [Header("Steering")] [SerializeField] private float turnStrength;
         [SerializeField] private float maxWheelTurn;
@@ -56,6 +57,9 @@ namespace RacingGame.Core
 
         private Vector3 _modelStartLocalPosition;
         private Quaternion _modelStartLocalRotation;
+
+        private Vector3 _groundNormal = Vector3.up;
+        private Quaternion _currentTilt = Quaternion.identity;
 
         public void SetInput(float speedInput, float steerInput)
         {
@@ -109,7 +113,6 @@ namespace RacingGame.Core
         {
             transform.position = sphereRigidBody.transform.position;
             UpdateModelVisual();
-            UpdateTint();
         }
 
         private void FixedUpdate()
@@ -125,7 +128,7 @@ namespace RacingGame.Core
 
             float forwardSpeed = Vector3.Dot(sphereRigidBody.linearVelocity, transform.forward);
 
-            if (IsGrounded())
+            if (IsGround())
             {
                 forwardSpeed = CalculateForwardSpeed(forwardSpeed, dt);
                 ApplyGroundVelocity(forwardSpeed, dt);
@@ -231,6 +234,8 @@ namespace RacingGame.Core
 
         private void UpdateModelVisual()
         {
+            UpdateTilt();
+            UpdateTint();
             float angle = 0f;
             float height = 0f;
 
@@ -242,7 +247,7 @@ namespace RacingGame.Core
             if (hopProgress < 1f)
                 height = Mathf.Sin(hopProgress * Mathf.PI) * _hopHeight;
 
-            model.localRotation = _modelStartLocalRotation * Quaternion.Euler(0f, angle, 0f);
+            model.localRotation = _currentTilt * _modelStartLocalRotation * Quaternion.Euler(0f, angle, 0f);
             model.localPosition = _modelStartLocalPosition + Vector3.up * height;
         }
 
@@ -256,6 +261,7 @@ namespace RacingGame.Core
             Vector3 e = wheel.localEulerAngles;
             wheel.localRotation = Quaternion.Euler(e.x, angle, e.z);
         }
+
         private void UpdateSpeedModifierTimer(float dt)
         {
             if (_speedModifierTimeLeft <= 0f) return;
@@ -264,9 +270,17 @@ namespace RacingGame.Core
             if (_speedModifierTimeLeft <= 0f) _speedMultiplier = 1f;
         }
 
-        private bool IsGrounded()
+        private bool IsGround()
         {
-            return Physics.Raycast(sphereRigidBody.position, Vector3.down, groundCheckDistance, groundMask);
+            if (Physics.Raycast(sphereRigidBody.position, Vector3.down, out RaycastHit hit, groundCheckDistance,
+                    groundMask))
+            {
+                _groundNormal = hit.normal;
+                return true;
+            }
+
+            _groundNormal = Vector3.up;
+            return false;
         }
 
         private void ApplyGroundVelocity(float forwardSpeed, float dt)
@@ -276,7 +290,8 @@ namespace RacingGame.Core
             Vector3 sidewaysVelocity = Vector3.Dot(velocity, transform.right) * transform.right;
             sidewaysVelocity = Vector3.Lerp(sidewaysVelocity, Vector3.zero, grip * dt);
 
-            sphereRigidBody.linearVelocity = transform.forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;
+            sphereRigidBody.linearVelocity =
+                transform.forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;
         }
 
         private float CalculateWheelAngle(float forwardSpeed)
@@ -299,6 +314,15 @@ namespace RacingGame.Core
             float wheelAngle = CalculateWheelAngle(forwardSpeed);
             SetWheelAngle(leftFrontWheel, wheelAngle);
             SetWheelAngle(rightFrontWheel, wheelAngle);
+        }
+
+        private void UpdateTilt()
+        {
+            Vector3 localNormal = transform.InverseTransformDirection(_groundNormal);
+            Quaternion targetTilt = Quaternion.FromToRotation(Vector3.up, localNormal);
+
+            float t = 1f - Mathf.Exp(-tiltSpeed * Time.deltaTime);
+            _currentTilt = Quaternion.Slerp(_currentTilt, targetTilt, t);
         }
     }
 }
