@@ -479,8 +479,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1574226965667518728}
-  - component: {fileID: 4232746897173028319}
   - component: {fileID: 393647352584761799}
+  - component: {fileID: 4232746897173028319}
+  - component: {fileID: 6851216400726861933}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -506,6 +507,33 @@ Transform:
   - {fileID: 5375723482704564680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &393647352584761799
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199355967876789886}
+  serializedVersion: 5
+  m_Mass: 70
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 2
 --- !u!114 &4232746897173028319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,33 +590,21 @@ MonoBehaviour:
   model: {fileID: 631201045683286550}
   leftFrontWheel: {fileID: 8637459566098584702}
   rightFrontWheel: {fileID: 259989012702584838}
---- !u!54 &393647352584761799
-Rigidbody:
+--- !u!114 &6851216400726861933
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8199355967876789886}
-  serializedVersion: 5
-  m_Mass: 70
-  m_LinearDamping: 0
-  m_AngularDamping: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 80
-  m_CollisionDetection: 2
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa75ae26d23c2c4da309ec1ba1c15ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RacingEffects.EffectManager
+  availableEffects:
+  - {fileID: 11400000, guid: 69423fc739dea1643b4575d020f3d379, type: 2}
+  percentPerSecond: 4
 --- !u!1 &8699135001224167249
 GameObject:
   m_ObjectHideFlags: 0

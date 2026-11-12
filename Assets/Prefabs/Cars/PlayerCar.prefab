@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.PlayerController
   speedAction: {fileID: -915219137148053301, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   steeringAction: {fileID: 4670176562449054021, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  effectAction: {fileID: -2166309626010388503, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &6200460364154569315
 PrefabInstance:
   m_ObjectHideFlags: 0

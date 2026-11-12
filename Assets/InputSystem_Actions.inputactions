@@ -1044,6 +1044,16 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "UseEffect",
+                    "type": "Button",
+                    "id": "25ab4a54-3cb6-4e5c-8dec-6f905a3a5fbc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -1187,6 +1197,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74573db5-f8af-43b3-9121-cca352cd0591",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseEffect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

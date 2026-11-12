@@ -1,31 +1,43 @@
+using RacingGame.RacingEffects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace RacingGame.Core
 {
-    [RequireComponent(typeof(CarMovement))]
+    [RequireComponent(typeof(CarMovement), typeof(EffectManager))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private InputActionReference speedAction;
         [SerializeField] private InputActionReference steeringAction;
+        [SerializeField] private InputActionReference effectAction;
+        
         private CarMovement _carMovement;
-        
-        
-        void Awake()
+        private EffectManager _effectManager;
+
+        private void Awake()
         {
             _carMovement = GetComponent<CarMovement>();
+            _effectManager = GetComponent<EffectManager>();
         }
 
-        void Update()
+        private void Update()
         {
             _carMovement.SetInput(speedAction.action.ReadValue<float>(), steeringAction.action.ReadValue<float>());
-            
-            // test
-            var keyboard = UnityEngine.InputSystem.Keyboard.current;
-            if (keyboard.eKey.wasPressedThisFrame) _carMovement.ApplySpeedModifier(1.5f, 2f, 200f);
-            if (keyboard.qKey.wasPressedThisFrame) _carMovement.ApplySpeedModifier(0.4f, 2f, 30f);
-            if (keyboard.rKey.wasPressedThisFrame) _carMovement.ApplySpinOut(0.5f, 0.15f, 1, 0.5f);
-            if (keyboard.tKey.wasPressedThisFrame) _carMovement.ApplyExplosion(1f, Color.black, 0.8f, 0.4f);
+        }
+
+        private void UseEffect(InputAction.CallbackContext context)
+        {
+            _effectManager.ApplyCurrentEffect();
+        }
+        
+        private void OnEnable()
+        {
+            effectAction.action.performed += UseEffect;
+        }
+        
+        private void OnDisable()
+        {
+            effectAction.action.performed -= UseEffect;
         }
     }
 }
