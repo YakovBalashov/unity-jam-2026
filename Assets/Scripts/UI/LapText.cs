@@ -19,7 +19,7 @@ namespace RacingGame.UI
         private void Update()
         {
             if (!playerCarTracker) return;
-            var currentLap = Mathf.Max(raceTrack.LapCount, playerCarTracker.LapsCompleted + 1);
+            var currentLap = Mathf.Min(raceTrack.LapCount, playerCarTracker.LapsCompleted + 1);
             _lapText.text = $"Lap {currentLap}/{raceTrack.LapCount}";
         }
     }
