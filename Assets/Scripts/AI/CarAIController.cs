@@ -21,7 +21,7 @@ namespace RacingGame.AI
         private RaceTrack _trackPath;
         private CarMovement _carMovement;
         private Rigidbody _rigidbody;
-        private int _currentWaypointIndex = 1;
+        private int _currentWaypointIndex = 0;
 
         private void Awake()
         {

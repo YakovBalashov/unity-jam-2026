@@ -16,7 +16,7 @@ namespace RacingGame.Core
         public void Initialize(RaceTrack trackPath)
         {
             _trackPath = trackPath;
-            CurrentWaypointIndex = 1;
+            CurrentWaypointIndex = 0;
         }
         
         private void Update()
@@ -30,16 +30,17 @@ namespace RacingGame.Core
 
         private void UpdateWaypointProgress()
         {
-            var targetPosition = _trackPath.Waypoints[CurrentWaypointIndex].position;
+            var count = _trackPath.Waypoints.Count;
+            var prev = _trackPath.Waypoints[(CurrentWaypointIndex - 1 + count) % count].position;
+            var next = _trackPath.Waypoints[CurrentWaypointIndex].position;
 
-            if (!(Vector3.Distance(transform.position, targetPosition) < waypointTolerance)) return;
-            CurrentWaypointIndex++;
+            var segment = next - prev;
+            var progress = Vector3.Dot(transform.position - prev, segment.normalized);
 
-            if (CurrentWaypointIndex < _trackPath.Waypoints.Count) return;
-            CurrentWaypointIndex = 0;
+            if (progress < segment.magnitude) return;
 
-            if (CurrentWaypointIndex != 1) return;
-            LapsCompleted++;
+            CurrentWaypointIndex = (CurrentWaypointIndex + 1) % count;
+            if (CurrentWaypointIndex == 1) LapsCompleted++; 
         }
 
         private void CalculateContinuousDistance()

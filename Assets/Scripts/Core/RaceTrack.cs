@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RacingGame.Core
@@ -6,11 +7,16 @@ namespace RacingGame.Core
     public class RaceTrack : MonoBehaviour
     {
         [SerializeField] private int lapCount;
+
         [field: SerializeField] private Transform trackWaypointRoot;
         [field: SerializeField] public List<Transform> Waypoints { get; private set; } = new();
 
         [field: SerializeField] private Transform aiWaypointRoot;
         [field: SerializeField] public List<Transform> AIWaypoints { get; private set; } = new();
+
+        [field: SerializeField] public Transform startingPositionRoot;
+        [field: SerializeField] public List<Transform> StartingPositions { get; private set; } = new();
+
 
         [Header("Gizmo Settings")] [SerializeField]
         private Color trackGizmoColor = Color.orange;
@@ -19,6 +25,9 @@ namespace RacingGame.Core
 
         [SerializeField] private float aiWaypointRadius = 0.5f;
         [SerializeField] private Color aiWaypointColor = Color.magenta;
+
+        [SerializeField] private Color startingPositionColor = Color.green;
+        [SerializeField] private float startingPositionRadius = 0.75f;
 
         public List<float> CumulativeDistances { get; private set; }
         public float TrackLength { get; private set; }
@@ -47,11 +56,12 @@ namespace RacingGame.Core
             if (Application.isPlaying) return;
 
             var needsUpdate = IsDesynced(trackWaypointRoot, Waypoints) ||
-                              IsDesynced(aiWaypointRoot, AIWaypoints);
+                              IsDesynced(aiWaypointRoot, AIWaypoints) ||
+                              IsDesynced(startingPositionRoot, StartingPositions);
 
             if (!needsUpdate) return;
 
-            GetWaypoints();
+            UpdateMarkdown();
             UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif
@@ -70,24 +80,20 @@ namespace RacingGame.Core
             return false;
         }
 
-        [ContextMenu("Get Waypoints From Children")]
-        private void GetWaypoints()
+        [ContextMenu("Get Metrics From Children")]
+        private void UpdateMarkdown()
         {
-            if (trackWaypointRoot != null)
-            {
-                Waypoints.Clear();
-                foreach (Transform child in trackWaypointRoot)
-                {
-                    Waypoints.Add(child);
-                }
-            }
+            PopulateListFromRoot(trackWaypointRoot, Waypoints);
+            PopulateListFromRoot(aiWaypointRoot, AIWaypoints);
+            PopulateListFromRoot(startingPositionRoot, StartingPositions);
+        }
 
-            if (aiWaypointRoot == null) return;
-            AIWaypoints.Clear();
-            foreach (Transform child in aiWaypointRoot)
-            {
-                AIWaypoints.Add(child);
-            }
+        private static void PopulateListFromRoot(Transform root, List<Transform> list)
+        {
+            if (root == null) return;
+    
+            list.Clear();
+            list.AddRange(root.Cast<Transform>());
         }
 
         private void OnDrawGizmos()
@@ -98,6 +104,18 @@ namespace RacingGame.Core
 
             DrawWaypointGizmos(Waypoints, trackGizmoColor, trackWaypointRadius);
             DrawWaypointGizmos(AIWaypoints, aiWaypointColor, aiWaypointRadius);
+            DrawStartingPositionsGizmos(StartingPositions, startingPositionColor, startingPositionRadius);
+        }
+
+        private static void DrawStartingPositionsGizmos(List<Transform> startingPositions, Color color, float radius)
+        {
+            if (startingPositions == null || startingPositions.Count == 0) return;
+
+            Gizmos.color = color;
+            foreach (var position in startingPositions.Where(position => position != null))
+            {
+                Gizmos.DrawSphere(position.position, radius);
+            }
         }
 
         private static void DrawWaypointGizmos(List<Transform> waypoints, Color color, float radius)
