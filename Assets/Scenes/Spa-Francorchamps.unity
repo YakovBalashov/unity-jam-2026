@@ -13037,8 +13037,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
-      value: 4
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: availableEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: 'availableEffects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: abeb457f148b37542937f7202aeb7b93, type: 2}
+    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: 'availableEffects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 69423fc739dea1643b4575d020f3d379, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
