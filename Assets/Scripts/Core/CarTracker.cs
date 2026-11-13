@@ -4,65 +4,51 @@ namespace RacingGame.Core
 {
     public class CarTracker : MonoBehaviour, System.IComparable<CarTracker>
     {
-        [SerializeField] private float waypointTolerance = 4f;
-
-        public int LapsCompleted { get; private set; }
-        public int CurrentWaypointIndex { get; private set; }
-        public float TotalRaceDistance { get; private set; }
+        public int CheckpointsPassed { get; private set; }
+        public float DistanceToNext { get; private set; }
         public int CurrentPosition { get; set; }
-        
-        private RaceTrack _trackPath;
+        public int LapsCompleted => _track ? CheckpointsPassed / _track.Waypoints.Count : 0;
+        [SerializeField] private float passRadius = 10f;
 
-        public void Initialize(RaceTrack trackPath)
+        private RaceTrack _track;
+        private int _nextIndex;
+
+        public void Initialize(RaceTrack track)
         {
-            _trackPath = trackPath;
-            CurrentWaypointIndex = 0;
+            _track = track;
+            _nextIndex = 1;
+            CheckpointsPassed = 0;
         }
-        
+
         private void Update()
         {
-            if (!_trackPath || _trackPath.Waypoints.Count == 0) return;
+            var wps = _track.Waypoints;
+            var count = wps.Count;
+            if (count < 2) return;
 
-            UpdateWaypointProgress();
-            CalculateContinuousDistance();
-        }
+            for (var i = 0; i < 3; i++)
+            {
+                var prev = wps[(_nextIndex - 1 + count) % count].position;
+                var next = wps[_nextIndex].position;
+                var dir = (next - prev).normalized;
 
-        private void UpdateWaypointProgress()
-        {
-            var count = _trackPath.Waypoints.Count;
-            var prev = _trackPath.Waypoints[(CurrentWaypointIndex - 1 + count) % count].position;
-            var next = _trackPath.Waypoints[CurrentWaypointIndex].position;
+                var crossedPlane = Vector3.Dot(transform.position - next, dir) >= 0f;
+                var withinRadius = (transform.position - next).sqrMagnitude < passRadius * passRadius;
 
-            var segment = next - prev;
-            var progress = Vector3.Dot(transform.position - prev, segment.normalized);
+                if (!crossedPlane && !withinRadius) break;
 
-            if (progress < segment.magnitude) return;
+                _nextIndex = (_nextIndex + 1) % count;
+                CheckpointsPassed++;
+            }
 
-            CurrentWaypointIndex = (CurrentWaypointIndex + 1) % count;
-            if (CurrentWaypointIndex == 1) LapsCompleted++; 
-        }
-
-        private void CalculateContinuousDistance()
-        {
-            var previousIndex = CurrentWaypointIndex == 0 ? _trackPath.Waypoints.Count - 1 : CurrentWaypointIndex - 1;
-            
-            var previousPosition = _trackPath.Waypoints[previousIndex].position;
-            var nextPosition = _trackPath.Waypoints[CurrentWaypointIndex].position;
-
-            var segmentDirection = (nextPosition - previousPosition).normalized;
-            
-            var carToPrev = transform.position - previousPosition;
-
-            var distanceAlongSegment = Vector3.Dot(carToPrev, segmentDirection);
-
-            var lapDistance = _trackPath.CumulativeDistances[previousIndex] + distanceAlongSegment;
-
-            TotalRaceDistance = LapsCompleted * _trackPath.TrackLength + lapDistance;
+            DistanceToNext = Vector3.Distance(transform.position, wps[_nextIndex].position);
         }
 
         public int CompareTo(CarTracker other)
         {
-            return other.TotalRaceDistance.CompareTo(TotalRaceDistance);
+            return CheckpointsPassed != other.CheckpointsPassed
+                ? other.CheckpointsPassed.CompareTo(CheckpointsPassed)
+                : DistanceToNext.CompareTo(other.DistanceToNext);
         }
     }
 }
