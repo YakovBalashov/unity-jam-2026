@@ -688,14 +688,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RaceManager
   raceTrack: {fileID: 1695449695}
   playerCar: {fileID: 1833157878}
-  aiCarPrefab: {fileID: 9090435424703939963, guid: 129e62cf2ee5f464aa982d58d18716d4, type: 3}
   pilotSelection: {fileID: 11400000, guid: 26cc637175bcd0447a297e0e910a79cf, type: 2}
   raceResultsUI: {fileID: 1952863717}
   raceUI: {fileID: 366317843}
-  playerStartingPosition: 1
+  playerStartingPosition: 4
   playerCamera: {fileID: 330585543}
   finishCamera: {fileID: 1747284271}
   mainCanvas: {fileID: 1285372713}
+  aiCarPrefabs:
+  - {fileID: 9090435424703939963, guid: 5418e8c9b8db08542961c5a11755582b, type: 3}
+  - {fileID: 9090435424703939963, guid: 5a60da2079d1155429b61989a8bc636e, type: 3}
+  - {fileID: 9090435424703939963, guid: 795471d4207403c4185ab63349e586be, type: 3}
+  - {fileID: 9090435424703939963, guid: a565e6ee00db2054e9a63106649611c1, type: 3}
+  - {fileID: 9090435424703939963, guid: 91bb0aef33e560149b7d2f8b10ee5048, type: 3}
+  - {fileID: 9090435424703939963, guid: d91c3bcec5758db4ca76fb7f1f385595, type: 3}
+  - {fileID: 9090435424703939963, guid: c04da784561f37b40b88ce6aa7f0565c, type: 3}
+  - {fileID: 9090435424703939963, guid: ca3875f3e68767f44b7c073d98b762df, type: 3}
+  - {fileID: 9090435424703939963, guid: e2492304548fc0546a73e0b53db04859, type: 3}
+  - {fileID: 9090435424703939963, guid: 4f42ab39f5ff44a488cb274825d7299d, type: 3}
+  - {fileID: 9090435424703939963, guid: c30b00cbbafa5b24383b89dbe0046b32, type: 3}
 --- !u!1001 &1695449694
 PrefabInstance:
   m_ObjectHideFlags: 0

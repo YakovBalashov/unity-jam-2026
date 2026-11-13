@@ -11,7 +11,6 @@ namespace RacingGame.Core
     {
         [SerializeField] private RaceTrack raceTrack;
         [SerializeField] private GameObject playerCar;
-        [SerializeField] private GameObject aiCarPrefab;
         [SerializeField] private PilotSelection pilotSelection;
         [SerializeField] private RaceResults raceResultsUI;
         [SerializeField] private GameObject raceUI;
@@ -20,20 +19,22 @@ namespace RacingGame.Core
         [SerializeField] private GameObject playerCamera;
         [SerializeField] private GameObject finishCamera;
         [SerializeField] private Canvas mainCanvas;
-
+        [SerializeField] private List<GameObject> aiCarPrefabs;
+        
         private readonly List<CarTracker> _cars = new();
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
         private float _startTime;
         private readonly List<(int position, string name, float time)> _results = new();
         private bool _playerFinished = false;
 
-        private Random _random = new Random();
+        private readonly Random _random = new();
 
         private void Start()
         {
             var safePlayerIndex = Mathf.Clamp(playerStartingPosition - 1, 0, raceTrack.StartingPositions.Count - 1);
 
             var listOfPilots = CreateAIPilotList(pilotSelection);
+            var currentAIPrefabIndex = 0;
 
             for (var i = 0; i < raceTrack.StartingPositions.Count; i++)
             {
@@ -60,7 +61,8 @@ namespace RacingGame.Core
                     if (listOfPilots.Count == 0) break;
                     var randomPilot = listOfPilots[_random.Range(0, listOfPilots.Count)];
                     listOfPilots.Remove(randomPilot);
-                    CreateAIPilot(startingPosition, randomPilot);
+                    CreateAIPilot(startingPosition, randomPilot, aiCarPrefabs[currentAIPrefabIndex]);
+                    currentAIPrefabIndex++;
                 }
             }
 
@@ -81,9 +83,9 @@ namespace RacingGame.Core
             return pilots;
         }
 
-        private void CreateAIPilot(Transform startingPosition, AIPilotParameters pilotParameters)
+        private void CreateAIPilot(Transform startingPosition, AIPilotParameters pilotParameters, GameObject prefab)
         {
-            var aiCarInstance = Instantiate(aiCarPrefab, startingPosition.position, startingPosition.rotation);
+            var aiCarInstance = Instantiate(prefab, startingPosition.position, startingPosition.rotation);
 
             var aiCarTracker = aiCarInstance.GetComponent<CarTracker>();
             _cars.Add(aiCarTracker);
