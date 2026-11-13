@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521ec40637a7bb84b9ea977240cc256c, type: 3}
   m_Name: SpeedEffect
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RacingEffects.SpeedEffect
-  <Icon>k__BackingField: {fileID: -6099873399732076034, guid: d061335470fc4734197d51982c339dc1, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 09e80eb2e88e7ff448a001e3c9585b53, type: 3}
   accelerationMultiplier: 2
   decelerationMultiplier: 0.3
   accelerationDuration: 5
