@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RacingEffects.BananaEffect
   <Icon>k__BackingField: {fileID: 21300000, guid: 2a813d6af182013488649cc993b86440, type: 3}
   bananaPrefab: {fileID: 9148586278237795236, guid: 9cf6963c37549b14195ac1b982d16dae, type: 3}
-  animationDuration: 2
-  stunDuration: 2
-  turns: 10
+  animationDuration: 0.5
+  stunDuration: 0.15
+  turns: 1
   hopHeight: 0.5
   bananaSpawnOffset: 2

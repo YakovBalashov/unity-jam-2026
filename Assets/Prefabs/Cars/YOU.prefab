@@ -48,17 +48,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6851216400726861933, guid: 38feb44a37446ef40b34179815e102e2, type: 3}
-      propertyPath: availableEffects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6851216400726861933, guid: 38feb44a37446ef40b34179815e102e2, type: 3}
-      propertyPath: 'availableEffects.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c3b4a74508390234e9c3fd85b9617955, type: 2}
     - target: {fileID: 8199355967876789886, guid: 38feb44a37446ef40b34179815e102e2, type: 3}
       propertyPath: m_Name
-      value: PlayerCar
+      value: YOU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

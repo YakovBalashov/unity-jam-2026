@@ -8,7 +8,8 @@ namespace RacingGame.RacingEffects
     {
         [SerializeField] private GameObject rocketPrefab;
         [SerializeField] private float positiveDuration = 2f;
-        [SerializeField] private float negativeDuration = 2f;
+        [SerializeField] private float negativeStunDuration = 1f;
+        [SerializeField] private float negativeHopDuration = 0.4f;
         [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private float rocketSpawnOffset = 2f;
         
@@ -19,7 +20,7 @@ namespace RacingGame.RacingEffects
 
         protected override void ApplyNegative(CarMovement car)
         {
-            car.ApplyExplosion(negativeDuration, Color.white, hopHeight, negativeDuration);
+            car.ApplyExplosion(negativeStunDuration, Color.black, hopHeight, negativeHopDuration);
         }
     }
 }

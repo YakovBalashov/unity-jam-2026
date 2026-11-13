@@ -15,6 +15,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 334f47b7fb0858245ae066938e217359, type: 3}
   rocketPrefab: {fileID: 1669471246608717888, guid: 8753834945336584cbb32e11751d7396, type: 3}
   positiveDuration: 2
-  negativeDuration: 2
-  hopHeight: 0.5
+  negativeStunDuration: 1
+  negativeHopDuration: 0.4
+  hopHeight: 0.8
   rocketSpawnOffset: 2
