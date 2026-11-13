@@ -31,7 +31,7 @@ namespace RacingGame.Core
         [Header("Visual")] [SerializeField] private Transform model;
         [SerializeField] private Transform leftFrontWheel;
         [SerializeField] private Transform rightFrontWheel;
-        
+
         private Rigidbody _rigidbody;
         private Vector3 _groundCheckLocalOrigin;
 
@@ -42,7 +42,7 @@ namespace RacingGame.Core
 
         private float _speedInput;
         private float _steerInput;
-        
+
         private float _speedMultiplier = 1f;
         private float _speedModifierTimeLeft;
         private float _speedModifierTransitionAcceleration;
@@ -67,12 +67,19 @@ namespace RacingGame.Core
 
         private Vector3 _groundNormal = Vector3.up;
         private Quaternion _currentTilt = Quaternion.identity;
-        
+
         private Collider _groundCollider;
         private Surface _groundSurface;
 
         private float SurfaceSpeedMultiplier => _groundSurface ? _groundSurface.SpeedMultiplier : 1f;
         private float SurfaceGripMultiplier => _groundSurface ? _groundSurface.GripMultiplier : 1f;
+
+
+        public void Initialize(float newAcceleration, float newMaxSpeed)
+        {
+            acceleration = newAcceleration;
+            maxSpeed = newMaxSpeed;
+        }
 
         public void SetInput(float speedInput, float steerInput)
         {
@@ -104,7 +111,7 @@ namespace RacingGame.Core
             if (particlesPrefab)
                 Instantiate(particlesPrefab, transform.position, Quaternion.identity);
         }
-        
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -151,7 +158,7 @@ namespace RacingGame.Core
             {
                 _rigidbody.AddForce(Vector3.down * extraJumpGravity, ForceMode.Acceleration);
             }
-            
+
             _rigidbody.angularVelocity = new Vector3(0f, turnRate * Mathf.Deg2Rad, 0f);
 
             UpdateFrontWheels(forwardSpeed);

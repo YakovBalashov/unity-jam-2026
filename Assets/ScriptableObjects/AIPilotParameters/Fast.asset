@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546de074bb70db24b876983db6dbef11, type: 3}
   m_Name: Fast
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.AI.AIPilotParameters
-  <SteeringSensitivity>k__BackingField: 5
-  <SteeringSensitivityOffset>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 35
-  <MaxSpeedOffset>k__BackingField: 5
-  <Acceleration>k__BackingField: 18
+  <SteeringSensitivity>k__BackingField: 10
+  <SteeringSensitivityOffset>k__BackingField: 2
+  <MaxSpeed>k__BackingField: 60
+  <MaxSpeedOffset>k__BackingField: 10
+  <Acceleration>k__BackingField: 30
   <AccelerationOffset>k__BackingField: 2

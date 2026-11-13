@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.AI.AIPilotParameters
   <SteeringSensitivity>k__BackingField: 5
   <SteeringSensitivityOffset>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 25
-  <MaxSpeedOffset>k__BackingField: 5
-  <Acceleration>k__BackingField: 12
+  <MaxSpeed>k__BackingField: 40
+  <MaxSpeedOffset>k__BackingField: 7
+  <Acceleration>k__BackingField: 18
   <AccelerationOffset>k__BackingField: 2

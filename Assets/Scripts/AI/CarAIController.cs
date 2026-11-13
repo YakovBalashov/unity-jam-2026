@@ -29,9 +29,10 @@ namespace RacingGame.AI
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Initialize(RaceTrack track)
+        public void Initialize(RaceTrack track, float sensitivity)
         {
             _trackPath = track;
+            steeringSensitivity = sensitivity;
         }
 
         private void Update()
