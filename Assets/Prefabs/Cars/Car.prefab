@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be58139788637f8488b4b2be0daaf39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.CarTracker
-  waypointTolerance: 5
+  waypointTolerance: 8
 --- !u!1 &8699135001224167249
 GameObject:
   m_ObjectHideFlags: 0
