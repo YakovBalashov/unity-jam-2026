@@ -13,5 +13,8 @@ namespace RacingGame.AI
         
         [field: SerializeField] public float Acceleration { get; private set; } = 12f;
         [field: SerializeField] public float AccelerationOffset { get; private set; } = 2f;
+        
+        [field: SerializeField] public int ActivatePercentage { get; private set; } = 80;
+        [field: SerializeField] public int ActivatePercentageOffset { get; private set; } = 5;
     }
 }

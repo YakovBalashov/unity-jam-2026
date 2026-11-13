@@ -92,7 +92,8 @@ namespace RacingGame.Core
             aiCarTracker.Initialize(raceTrack);
 
             aiCarInstance.GetComponent<CarAIController>().Initialize(raceTrack,
-                _random.RandomizeValue(pilotParameters.SteeringSensitivity, pilotParameters.SteeringSensitivityOffset));
+                _random.RandomizeValue(pilotParameters.SteeringSensitivity, pilotParameters.SteeringSensitivityOffset), 
+                pilotParameters.ActivatePercentage, pilotParameters.ActivatePercentageOffset);
 
             aiCarInstance.GetComponent<CarMovement>().Initialize(
                 _random.RandomizeValue(pilotParameters.MaxSpeed, pilotParameters.MaxSpeedOffset),

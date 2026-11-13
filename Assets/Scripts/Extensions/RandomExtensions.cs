@@ -18,5 +18,10 @@ namespace RacingGame.Extensions
         {
             return random.Range(baseValue - offset, baseValue + offset);
         }
+        
+        public static int RandomizeValue(this Random random, int baseValue, int offset)
+        {
+            return random.Range(baseValue - offset, baseValue + offset);
+        }
     }
 }
