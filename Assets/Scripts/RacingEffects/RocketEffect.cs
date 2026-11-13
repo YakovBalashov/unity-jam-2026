@@ -13,10 +13,14 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private float rocketSpawnOffset = 2f;
         [SerializeField] private Material burntMaterial;
-        
+        [SerializeField] private float rocketSpawnHeight = 0.5f;
+
         protected override void ApplyPositive(CarMovement car)
         {
-            Instantiate(rocketPrefab, car.transform.position + car.transform.forward * rocketSpawnOffset, car.transform.rotation);
+            var flatForward = Vector3.ProjectOnPlane(car.transform.forward, Vector3.up).normalized;
+            var position = car.transform.position + flatForward * rocketSpawnOffset + Vector3.up * rocketSpawnHeight;
+
+            Instantiate(rocketPrefab, position, Quaternion.LookRotation(flatForward, Vector3.up));
         }
 
         protected override void ApplyNegative(CarMovement car)

@@ -10,12 +10,14 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float hopDuration= 0.4f;
         [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private Material burntMaterial;
+        [SerializeField] private float lifetime = 10f;
 
         private Vector3 _velocity;
 
         private void Awake()
         {
             _velocity = speed * transform.forward;
+            Destroy(gameObject, lifetime);
         }
 
         private void Update()
