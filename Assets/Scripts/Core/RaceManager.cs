@@ -20,6 +20,7 @@ namespace RacingGame.Core
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
         private float _startTime;
         private readonly List<(int position, string name, float time)> _results = new();
+        private bool _playerFinished = false;
 
         private void Start()
         {
@@ -91,13 +92,11 @@ namespace RacingGame.Core
             {
                 playerCamera.SetActive(false);
                 finishCamera.SetActive(true);
+                _playerFinished = true;
             }
             
-            if (_finishedCars.Count != _cars.Count) return;
-            foreach (var (car, time) in _finishedCars)
-            {
-                raceResultsUI.Show(_results);
-            }
+            if (!_playerFinished) return;
+            raceResultsUI.Show(_results);
         }
     }
 }
