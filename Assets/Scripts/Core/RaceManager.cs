@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using RacingGame.AI;
 using RacingGame.UI;
 using UnityEngine;
 using Random = System.Random;
 using RacingGame.Extensions;
+using RacingGame.RacingEffects;
 
 namespace RacingGame.Core
 {
@@ -21,6 +23,11 @@ namespace RacingGame.Core
         [SerializeField] private Canvas mainCanvas;
         [SerializeField] private List<GameObject> aiCarPrefabs;
         
+        [SerializeField] private CountdownUI countdownUI;
+        [SerializeField] private int countdownSeconds = 3;
+        
+        [SerializeField] private string goString = "GO!";
+        
         private readonly List<CarTracker> _cars = new();
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
         private float _startTime;
@@ -28,6 +35,7 @@ namespace RacingGame.Core
         private bool _playerFinished = false;
 
         private readonly Random _random = new();
+
 
         private void Start()
         {
@@ -65,8 +73,38 @@ namespace RacingGame.Core
                     currentAIPrefabIndex++;
                 }
             }
+            
+            SetCarsControllable(false);
+            StartCoroutine(CountdownRoutine());
+        }
+        
+        private System.Collections.IEnumerator CountdownRoutine()
+        {
+            yield return new WaitForSeconds(1f);
 
-            _startTime = Time.time;
+            for (var i = countdownSeconds; i > 0; i--)
+            {
+                countdownUI.Show(i.ToString());
+                yield return new WaitForSeconds(1f);
+            }
+
+            goString = "GO!";
+            countdownUI.Show(goString);
+            _startTime = Time.time;          
+            SetCarsControllable(true);
+
+            yield return new WaitForSeconds(0.8f);
+            countdownUI.Hide();
+        }
+        
+        private void SetCarsControllable(bool value)
+        {
+            foreach (var car in _cars)
+            {
+                if (car.TryGetComponent<CarAIController>(out var ai)) ai.enabled = value;
+                if (car.TryGetComponent<PlayerController>(out var player)) player.enabled = value; 
+                if (car.TryGetComponent<EffectManager>(out var manager)) manager.enabled = value;
+            }
         }
 
         private static List<AIPilotParameters> CreateAIPilotList(PilotSelection selection)
