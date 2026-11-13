@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using RacingGame.AI;
+using RacingGame.UI;
 using UnityEngine;
 
 namespace RacingGame.Core
@@ -9,11 +10,16 @@ namespace RacingGame.Core
         [SerializeField] private RaceTrack raceTrack;
         [SerializeField] private GameObject playerCar;
         [SerializeField] private GameObject aiCarPrefab;
+        [SerializeField] private RaceResults raceResultsUI;
         [SerializeField] private int playerStartingPosition = 4;
         
+        [SerializeField] private GameObject playerCamera;
+        [SerializeField] private GameObject finishCamera;
+        
         private readonly List<CarTracker> _cars = new();
-        private Dictionary<CarTracker, float> _finishedCars = new();
+        private readonly Dictionary<CarTracker, float> _finishedCars = new();
         private float _startTime;
+        private readonly List<(int position, string name, float time)> _results = new();
 
         private void Start()
         {
@@ -74,17 +80,23 @@ namespace RacingGame.Core
 
         private void HandleFinish(CarTracker carTracker)
         {
-            if (carTracker.LapsCompleted < raceTrack.LapCount) return;
+            if (carTracker.LapsCompleted != raceTrack.LapCount) return;
+            
             var finishTime = Time.time - _startTime;
             _finishedCars[carTracker] = finishTime;
-
-            Debug.Log($"{carTracker.name} finished in position {carTracker.CurrentPosition} with a time of {finishTime:F2} seconds.");
-
+            var finishPosition = _finishedCars.Count;
+            _results.Add((finishPosition, carTracker.name, finishTime));
+            
+            if (carTracker.gameObject == playerCar)
+            {
+                playerCamera.SetActive(false);
+                finishCamera.SetActive(true);
+            }
+            
             if (_finishedCars.Count != _cars.Count) return;
-            Debug.Log("Race finished!");
             foreach (var (car, time) in _finishedCars)
             {
-                Debug.Log($"{car.name} finished in position {car.CurrentPosition} with a time of {time:F2} seconds.");
+                raceResultsUI.Show(_results);
             }
         }
     }
