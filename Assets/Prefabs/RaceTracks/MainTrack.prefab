@@ -18911,6 +18911,10 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: <LapCount>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       propertyPath: <Waypoints>k__BackingField.Array.size
       value: 15
       objectReference: {fileID: 0}

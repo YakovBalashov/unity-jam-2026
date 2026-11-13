@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cbcf72fcc9e4c49a4afc0f5994d458, type: 3}
+  m_Name: Normal
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.AI.PilotSelection
+  <Pilots>k__BackingField:
+  - key: {fileID: 11400000, guid: 7ab66abb64027404e9b96aa73cd9bdd0, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 55d2180df5e872e449d9de29d666a4e1, type: 2}
+    value: 6
+  - key: {fileID: 11400000, guid: 013851be73c93ab4185c4052d93a00ae, type: 2}
+    value: 3

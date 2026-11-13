@@ -631,11 +631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5161113263031942763, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_Name
-      value: PlayerCar
+      value: YOU
       objectReference: {fileID: 0}
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RaceManager
   raceTrack: {fileID: 1695449695}
   playerCar: {fileID: 1833157878}
-  pilotSelection: {fileID: 11400000, guid: 26cc637175bcd0447a297e0e910a79cf, type: 2}
+  pilotSelection: {fileID: 11400000, guid: 5374bb6574aecb54eb917abd742a19f7, type: 2}
   raceResultsUI: {fileID: 1952863717}
   raceUI: {fileID: 366317843}
   playerStartingPosition: 4
@@ -715,10 +715,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 756985384220788019, guid: 757fa148716c1e047af937d97cd0d949, type: 3}
-      propertyPath: <LapCount>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1255223722233668258, guid: 757fa148716c1e047af937d97cd0d949, type: 3}
       propertyPath: m_Name
       value: MainTrack
