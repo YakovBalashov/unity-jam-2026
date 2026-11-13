@@ -21,8 +21,6 @@ namespace RacingGame.Core
         
         private void Update()
         {
-            Debug.Log($"Car: {gameObject.name}, Laps: {LapsCompleted}, Waypoint Index: {CurrentWaypointIndex}, Total Distance: {TotalRaceDistance}, Position: {CurrentPosition}");
-            
             if (!_trackPath || _trackPath.Waypoints.Count == 0) return;
 
             UpdateWaypointProgress();
