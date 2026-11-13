@@ -289,6 +289,11 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &366317843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7170509185202007362, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+  m_PrefabInstance: {fileID: 8774099217568467130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +690,7 @@ MonoBehaviour:
   playerCar: {fileID: 1833157878}
   aiCarPrefab: {fileID: 9090435424703939963, guid: 129e62cf2ee5f464aa982d58d18716d4, type: 3}
   raceResultsUI: {fileID: 1952863717}
+  raceUI: {fileID: 366317843}
   playerStartingPosition: 4
   playerCamera: {fileID: 330585543}
   finishCamera: {fileID: 1747284271}

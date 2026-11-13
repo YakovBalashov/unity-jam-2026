@@ -11,6 +11,7 @@ namespace RacingGame.Core
         [SerializeField] private GameObject playerCar;
         [SerializeField] private GameObject aiCarPrefab;
         [SerializeField] private RaceResults raceResultsUI;
+        [SerializeField] private GameObject raceUI;
         [SerializeField] private int playerStartingPosition = 4;
         
         [SerializeField] private GameObject playerCamera;
@@ -94,6 +95,7 @@ namespace RacingGame.Core
                 playerCamera.SetActive(false);
                 finishCamera.SetActive(true);
                 mainCanvas.worldCamera = finishCamera.GetComponent<UnityEngine.Camera>();
+                raceUI.SetActive(false);
                 _playerFinished = true;
             }
             
