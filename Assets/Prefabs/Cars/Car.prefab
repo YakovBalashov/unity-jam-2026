@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 393647352584761799}
   - component: {fileID: 4232746897173028319}
   - component: {fileID: 6851216400726861933}
+  - component: {fileID: 4775793312901932854}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -605,6 +606,19 @@ MonoBehaviour:
   availableEffects:
   - {fileID: 11400000, guid: 69423fc739dea1643b4575d020f3d379, type: 2}
   percentPerSecond: 4
+--- !u!114 &4775793312901932854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199355967876789886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be58139788637f8488b4b2be0daaf39d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.CarTracker
+  waypointTolerance: 4
 --- !u!1 &8699135001224167249
 GameObject:
   m_ObjectHideFlags: 0
