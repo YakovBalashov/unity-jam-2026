@@ -67,6 +67,12 @@ namespace RacingGame.Core
 
         private Vector3 _groundNormal = Vector3.up;
         private Quaternion _currentTilt = Quaternion.identity;
+        
+        private Collider _groundCollider;
+        private Surface _groundSurface;
+
+        private float SurfaceSpeedMultiplier => _groundSurface ? _groundSurface.SpeedMultiplier : 1f;
+        private float SurfaceGripMultiplier => _groundSurface ? _groundSurface.GripMultiplier : 1f;
 
         public void SetInput(float speedInput, float steerInput)
         {
@@ -174,16 +180,19 @@ namespace RacingGame.Core
             bool modifierActive = _speedModifierTimeLeft > 0f;
             bool boosting = modifierActive && _speedMultiplier > 1f;
             float input = boosting ? 1f : _speedInput;
+            float surfaceMultiplier = boosting ? 1f : SurfaceSpeedMultiplier;
+            float speedMultiplier = _speedMultiplier * surfaceMultiplier;
+
             float target, rate;
 
             switch (input)
             {
                 case > 0f:
-                    target = maxSpeed * input * _speedMultiplier;
+                    target = maxSpeed * input * speedMultiplier;
                     rate = forwardSpeed < 0f ? brakeDeceleration : acceleration;
                     break;
                 case < 0f:
-                    target = maxReverseSpeed * input * _speedMultiplier;
+                    target = maxReverseSpeed * input * speedMultiplier;
                     rate = forwardSpeed > 0f ? brakeDeceleration : deceleration;
                     break;
                 default:
@@ -196,12 +205,17 @@ namespace RacingGame.Core
             {
                 rate = _speedModifierTransitionAcceleration;
             }
-            else if (modifierActive)
+            else
             {
-                float speedLimit = (forwardSpeed >= 0f ? maxSpeed : maxReverseSpeed) * _speedMultiplier;
-                if (!(Mathf.Abs(forwardSpeed) > speedLimit)) return Mathf.MoveTowards(forwardSpeed, target, rate * dt);
-                target = Mathf.Sign(forwardSpeed) * speedLimit;
-                rate = Mathf.Max(rate, _speedModifierTransitionAcceleration);
+                float speedLimit = (forwardSpeed >= 0f ? maxSpeed : maxReverseSpeed) * speedMultiplier;
+                if (Mathf.Abs(forwardSpeed) > speedLimit)
+                {
+                    if (!modifierActive)
+                        return Mathf.Sign(forwardSpeed) * speedLimit;
+
+                    target = Mathf.Sign(forwardSpeed) * speedLimit;
+                    rate = Mathf.Max(rate, _speedModifierTransitionAcceleration);
+                }
             }
 
             return Mathf.MoveTowards(forwardSpeed, target, rate * dt);
@@ -284,10 +298,19 @@ namespace RacingGame.Core
             if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, groundCheckDistance, groundMask))
             {
                 _groundNormal = hit.normal;
+
+                if (hit.collider != _groundCollider)
+                {
+                    _groundCollider = hit.collider;
+                    hit.collider.TryGetComponent(out _groundSurface);
+                }
+
                 return true;
             }
 
             _groundNormal = Vector3.up;
+            _groundCollider = null;
+            _groundSurface = null;
             return false;
         }
 
@@ -296,7 +319,7 @@ namespace RacingGame.Core
             Vector3 velocity = _rigidbody.linearVelocity;
 
             Vector3 sidewaysVelocity = Vector3.Dot(velocity, Right) * Right;
-            sidewaysVelocity = Vector3.Lerp(sidewaysVelocity, Vector3.zero, grip * dt);
+            sidewaysVelocity = Vector3.Lerp(sidewaysVelocity, Vector3.zero, grip * SurfaceGripMultiplier * dt);
 
             _rigidbody.linearVelocity =
                 Forward * forwardSpeed + sidewaysVelocity + Vector3.up * velocity.y;

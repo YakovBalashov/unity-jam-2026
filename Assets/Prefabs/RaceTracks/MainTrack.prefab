@@ -3081,13 +3081,76 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 657628949618136669, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4052549778638565654}
+    - targetCorrespondingSourceObject: {fileID: 7584982469430197012, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 369984877452269986}
+    - targetCorrespondingSourceObject: {fileID: 4471290738519422562, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7813120987103359335}
   m_SourcePrefab: {fileID: 100100000, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+--- !u!1 &1210398576078815249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 657628949618136669, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+  m_PrefabInstance: {fileID: 1867987913213580876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4052549778638565654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210398576078815249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775697d911174f97a8a1e38cb9733eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.Surface
+  surfaceType: {fileID: 11400000, guid: 1a46285d9822658449b2a2f9b872c4b7, type: 2}
+--- !u!1 &2873677133796876334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4471290738519422562, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+  m_PrefabInstance: {fileID: 1867987913213580876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7813120987103359335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873677133796876334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775697d911174f97a8a1e38cb9733eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.Surface
+  surfaceType: {fileID: 11400000, guid: 8da9f571e0736b34bb447b228339a8d5, type: 2}
 --- !u!4 &6545529819438590605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4844194986776640705, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
   m_PrefabInstance: {fileID: 1867987913213580876}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8119752918684544344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7584982469430197012, guid: 0272d5b08108c7543b70c3ccbcd7249c, type: 3}
+  m_PrefabInstance: {fileID: 1867987913213580876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &369984877452269986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119752918684544344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775697d911174f97a8a1e38cb9733eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.Surface
+  surfaceType: {fileID: 11400000, guid: 1a46285d9822658449b2a2f9b872c4b7, type: 2}
 --- !u!1001 &1916449992776753096
 PrefabInstance:
   m_ObjectHideFlags: 0
