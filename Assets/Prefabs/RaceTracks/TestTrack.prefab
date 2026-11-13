@@ -932,6 +932,34 @@ PrefabInstance:
       propertyPath: '<StartingPositions>k__BackingField.Array.data[3]'
       value: 
       objectReference: {fileID: 7590160568756139341}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.608533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3436
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96616524
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.25792408
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159776972997165147, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -29.894
+      objectReference: {fileID: 0}
     - target: {fileID: 5615729363682398778, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.14

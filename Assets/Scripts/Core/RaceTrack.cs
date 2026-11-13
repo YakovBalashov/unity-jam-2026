@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace RacingGame.Core
 {
     public class RaceTrack : MonoBehaviour
     {
-        [SerializeField] private int lapCount;
+        [field: SerializeField] public int LapCount { get; private set; }
 
         [field: SerializeField] private Transform trackWaypointRoot;
         [field: SerializeField] public List<Transform> Waypoints { get; private set; } = new();
@@ -16,6 +17,7 @@ namespace RacingGame.Core
 
         [field: SerializeField] public Transform startingPositionRoot;
         [field: SerializeField] public List<Transform> StartingPositions { get; private set; } = new();
+        [field: SerializeField] public FinishTrigger FinishTrigger { get; private set; }
 
 
         [Header("Gizmo Settings")] [SerializeField]

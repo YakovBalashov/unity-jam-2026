@@ -25,7 +25,6 @@ namespace RacingGame.Core
 
             UpdateWaypointProgress();
             CalculateContinuousDistance();
-            
         }
 
         private void UpdateWaypointProgress()

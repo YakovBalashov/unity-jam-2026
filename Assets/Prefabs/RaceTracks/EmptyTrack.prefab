@@ -159,6 +159,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6576196964250735559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4126120987430566695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5159776972997165147}
+  - component: {fileID: 1565345586474968087}
+  - component: {fileID: 5820254185537448931}
+  m_Layer: 10
+  m_Name: FinishTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5159776972997165147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126120987430566695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5231780005676146511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1565345586474968087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126120987430566695}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5820254185537448931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126120987430566695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77703abd262c540499851ac58f003294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.FinishTrigger
 --- !u!1 &4581313199143303734
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69daaf97a992cc458f896a2c892ad44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Core.RaceTrack
-  lapCount: 0
+  <LapCount>k__BackingField: 2
   trackWaypointRoot: {fileID: 6576196964250735559}
   <Waypoints>k__BackingField:
   - {fileID: 7794251423607293783}
@@ -344,6 +410,7 @@ MonoBehaviour:
   <StartingPositions>k__BackingField:
   - {fileID: 4225910652994373513}
   - {fileID: 7068273794015780133}
+  <FinishTrigger>k__BackingField: {fileID: 5820254185537448931}
   trackGizmoColor: {r: 1, g: 0.6470588, b: 0, a: 1}
   trackWaypointRadius: 0.5
   aiWaypointRadius: 0.5
@@ -413,5 +480,6 @@ Transform:
   - {fileID: 6576196964250735559}
   - {fileID: 8217691083015499951}
   - {fileID: 5615729363682398778}
+  - {fileID: 5159776972997165147}
   m_Father: {fileID: 2910531567597627035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
