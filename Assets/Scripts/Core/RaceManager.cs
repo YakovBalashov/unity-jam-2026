@@ -15,6 +15,7 @@ namespace RacingGame.Core
         
         [SerializeField] private GameObject playerCamera;
         [SerializeField] private GameObject finishCamera;
+        [SerializeField] private Canvas mainCanvas;
         
         private readonly List<CarTracker> _cars = new();
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
@@ -92,6 +93,7 @@ namespace RacingGame.Core
             {
                 playerCamera.SetActive(false);
                 finishCamera.SetActive(true);
+                mainCanvas.worldCamera = finishCamera.GetComponent<UnityEngine.Camera>();
                 _playerFinished = true;
             }
             
