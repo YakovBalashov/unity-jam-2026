@@ -37,9 +37,7 @@ namespace RacingGame.Core
 
         private Vector3 Forward => _rigidbody.rotation * Vector3.forward;
         private Vector3 Right => _rigidbody.rotation * Vector3.right;
-
-        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
-
+        
         private float _speedInput;
         private float _steerInput;
 
@@ -58,9 +56,8 @@ namespace RacingGame.Core
         private float _hopDuration;
         private float _hopHeight;
 
-        private Renderer[] _modelRenderers;
-        private MaterialPropertyBlock _propertyBlock;
-        private bool _isTinted;
+        private Renderer[] _tintedRenderers;
+        private Material[][] _originalMaterials;
 
         private Vector3 _modelStartLocalPosition;
         private Quaternion _modelStartLocalRotation;
@@ -101,11 +98,11 @@ namespace RacingGame.Core
             Stun(animationDuration + stunDuration);
         }
 
-        public void ApplyExplosion(float stunDuration, Color tintColor,
+        public void ApplyExplosion(float stunDuration, Material burntMaterial,
             float hopHeight, float hopDuration, ParticleSystem particlesPrefab = null)
         {
             Stun(stunDuration);
-            ApplyTint(tintColor);
+            ApplyTint(burntMaterial);
             StartHop(hopHeight, hopDuration);
 
             if (particlesPrefab)
@@ -123,9 +120,6 @@ namespace RacingGame.Core
         {
             _modelStartLocalPosition = model.localPosition;
             _modelStartLocalRotation = model.localRotation;
-
-            _modelRenderers = model.GetComponentsInChildren<Renderer>();
-            _propertyBlock = new MaterialPropertyBlock();
         }
 
         private void LateUpdate()
@@ -228,23 +222,39 @@ namespace RacingGame.Core
             return Mathf.MoveTowards(forwardSpeed, target, rate * dt);
         }
 
-        private void ApplyTint(Color color)
+        private void ApplyTint(Material tintMaterial)
         {
-            _propertyBlock.SetColor(BaseColorId, color);
-            foreach (var modelRenderer in _modelRenderers)
-                modelRenderer.SetPropertyBlock(_propertyBlock);
+            if (!tintMaterial || _tintedRenderers != null) return; 
+            _tintedRenderers = model.GetComponentsInChildren<Renderer>(true);
+            _originalMaterials = new Material[_tintedRenderers.Length][];
 
-            _isTinted = true;
+            for (int i = 0; i < _tintedRenderers.Length; i++)
+            {
+                Renderer modelRenderer = _tintedRenderers[i];
+                if (modelRenderer is ParticleSystemRenderer) continue; 
+
+                _originalMaterials[i] = modelRenderer.sharedMaterials;
+
+                var tinted = new Material[_originalMaterials[i].Length];
+                for (int j = 0; j < tinted.Length; j++)
+                    tinted[j] = tintMaterial;
+
+                modelRenderer.sharedMaterials = tinted;
+            }
         }
 
         private void UpdateTint()
         {
-            if (!_isTinted || IsStunned) return;
+            if (_tintedRenderers == null || IsStunned) return;
 
-            foreach (var modelRenderer in _modelRenderers)
-                modelRenderer.SetPropertyBlock(null);
+            for (int i = 0; i < _tintedRenderers.Length; i++)
+            {
+                if (_tintedRenderers[i] && _originalMaterials[i] != null)
+                    _tintedRenderers[i].sharedMaterials = _originalMaterials[i];
+            }
 
-            _isTinted = false;
+            _tintedRenderers = null;
+            _originalMaterials = null;
         }
 
         private void StartSpin(int turns, float duration)

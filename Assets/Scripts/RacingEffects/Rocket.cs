@@ -8,6 +8,7 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float speed = 10f;
         [SerializeField] private float duration;
         [SerializeField] private float hopHeight;
+        [SerializeField] private Material burntMaterial;
 
         private Vector3 _velocity;
 
@@ -24,7 +25,7 @@ namespace RacingGame.RacingEffects
         private void OnTriggerEnter(Collider other)
         {
             var carMovement = other.GetComponentInParent<CarMovement>();
-            if (carMovement != null) carMovement.ApplyExplosion(duration, Color.white, hopHeight, duration);
+            if (carMovement != null) carMovement.ApplyExplosion(duration, burntMaterial, hopHeight, duration);
             Destroy(gameObject);
         }
     }

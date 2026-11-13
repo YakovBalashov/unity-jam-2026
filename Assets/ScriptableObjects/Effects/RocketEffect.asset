@@ -19,3 +19,4 @@ MonoBehaviour:
   negativeHopDuration: 0.4
   hopHeight: 0.8
   rocketSpawnOffset: 2
+  burntMaterial: {fileID: 2100000, guid: 96d92f628462b3f4d88d9d62efe7375d, type: 2}

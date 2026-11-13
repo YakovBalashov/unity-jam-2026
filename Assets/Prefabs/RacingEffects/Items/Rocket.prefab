@@ -49,6 +49,7 @@ MonoBehaviour:
   speed: 50
   duration: 2
   hopHeight: 0.5
+  burntMaterial: {fileID: 2100000, guid: 96d92f628462b3f4d88d9d62efe7375d, type: 2}
 --- !u!54 &5888334484724996266
 Rigidbody:
   m_ObjectHideFlags: 0

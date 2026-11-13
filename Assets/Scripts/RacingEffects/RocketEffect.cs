@@ -12,6 +12,7 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float negativeHopDuration = 0.4f;
         [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private float rocketSpawnOffset = 2f;
+        [SerializeField] private Material burntMaterial;
         
         protected override void ApplyPositive(CarMovement car)
         {
@@ -20,7 +21,7 @@ namespace RacingGame.RacingEffects
 
         protected override void ApplyNegative(CarMovement car)
         {
-            car.ApplyExplosion(negativeStunDuration, Color.black, hopHeight, negativeHopDuration);
+            car.ApplyExplosion(negativeStunDuration, burntMaterial, hopHeight, negativeHopDuration);
         }
     }
 }
