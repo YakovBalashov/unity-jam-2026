@@ -6,8 +6,9 @@ namespace RacingGame.RacingEffects
     public class Rocket : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
-        [SerializeField] private float duration;
-        [SerializeField] private float hopHeight;
+        [SerializeField] private float stunDuration= 1f;
+        [SerializeField] private float hopDuration= 0.4f;
+        [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private Material burntMaterial;
 
         private Vector3 _velocity;
@@ -25,7 +26,7 @@ namespace RacingGame.RacingEffects
         private void OnTriggerEnter(Collider other)
         {
             var carMovement = other.GetComponentInParent<CarMovement>();
-            if (carMovement != null) carMovement.ApplyExplosion(duration, burntMaterial, hopHeight, duration);
+            if (carMovement != null) carMovement.ApplyExplosion(stunDuration, burntMaterial, hopHeight, hopDuration);
             Destroy(gameObject);
         }
     }
