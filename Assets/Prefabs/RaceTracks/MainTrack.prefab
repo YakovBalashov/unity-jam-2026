@@ -1136,7 +1136,7 @@ Transform:
   m_GameObject: {fileID: 1454844391324822733}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104.9, y: 0, z: -28.3}
+  m_LocalPosition: {x: 92.8, y: 0, z: -28.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1477,37 +1477,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3065063597011822440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4292031975182177944}
-  m_Layer: 0
-  m_Name: Waypoint (16)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4292031975182177944
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065063597011822440}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 85.9, y: 0, z: -28.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1511662898074769619}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3091400113573214735
 GameObject:
   m_ObjectHideFlags: 0
@@ -17174,7 +17143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       propertyPath: <Waypoints>k__BackingField.Array.size
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       propertyPath: <AIWaypoints>k__BackingField.Array.size
@@ -17232,14 +17201,6 @@ PrefabInstance:
       propertyPath: '<Waypoints>k__BackingField.Array.data[14]'
       value: 
       objectReference: {fileID: 662436582761796911}
-    - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
-      propertyPath: '<Waypoints>k__BackingField.Array.data[15]'
-      value: 
-      objectReference: {fileID: 4292031975182177944}
-    - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
-      propertyPath: '<Waypoints>k__BackingField.Array.data[16]'
-      value: 
-      objectReference: {fileID: 4292031975182177944}
     - target: {fileID: 4987880744910851623, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       propertyPath: '<AIWaypoints>k__BackingField.Array.data[2]'
       value: 
@@ -17615,9 +17576,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6576196964250735559, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       insertIndex: -1
       addedObject: {fileID: 662436582761796911}
-    - targetCorrespondingSourceObject: {fileID: 6576196964250735559, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4292031975182177944}
     - targetCorrespondingSourceObject: {fileID: 8217691083015499951, guid: 6b6533b8e78ac10499778555b264f158, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5913910118403126779}
