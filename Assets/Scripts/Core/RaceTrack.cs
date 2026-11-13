@@ -6,11 +6,19 @@ namespace RacingGame.Core
     public class RaceTrack : MonoBehaviour
     {
         [SerializeField] private int lapCount;
+        [field: SerializeField] private Transform trackWaypointRoot;
         [field: SerializeField] public List<Transform> Waypoints { get; private set; } = new();
-        
-        [Header("Gizmo Settings")]
-        [SerializeField] private Color gizmoColor = Color.yellow;
-        [SerializeField] private float waypointRadius = 0.5f;
+
+        [field: SerializeField] private Transform aiWaypointRoot;
+        [field: SerializeField] public List<Transform> AIWaypoints { get; private set; } = new();
+
+        [Header("Gizmo Settings")] [SerializeField]
+        private Color trackGizmoColor = Color.orange;
+
+        [SerializeField] private float trackWaypointRadius = 0.5f;
+
+        [SerializeField] private float aiWaypointRadius = 0.5f;
+        [SerializeField] private Color aiWaypointColor = Color.magenta;
 
         public List<float> CumulativeDistances { get; private set; }
         public float TrackLength { get; private set; }
@@ -18,42 +26,95 @@ namespace RacingGame.Core
         private void Awake()
         {
             if (Waypoints == null || Waypoints.Count < 2) return;
-            
+
             CumulativeDistances = new List<float>(Waypoints.Count);
             var distance = 0f;
 
             for (var i = 0; i < Waypoints.Count; i++)
             {
                 CumulativeDistances.Add(distance);
-                
+
                 var nextIndex = (i + 1) % Waypoints.Count;
                 distance += Vector3.Distance(Waypoints[i].position, Waypoints[nextIndex].position);
             }
-            
+
             TrackLength = distance;
+        }
+
+#if UNITY_EDITOR
+        private void SyncWaypointsWithHierarchy()
+        {
+            if (Application.isPlaying) return;
+
+            var needsUpdate = IsDesynced(trackWaypointRoot, Waypoints) ||
+                              IsDesynced(aiWaypointRoot, AIWaypoints);
+
+            if (!needsUpdate) return;
+
+            GetWaypoints();
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+#endif
+
+        private static bool IsDesynced(Transform root, List<Transform> list)
+        {
+            if (root == null) return false;
+
+            if (list.Count != root.childCount) return true;
+
+            for (var i = 0; i < root.childCount; i++)
+            {
+                if (list[i] != root.GetChild(i)) return true;
+            }
+
+            return false;
         }
 
         [ContextMenu("Get Waypoints From Children")]
         private void GetWaypoints()
         {
-            Waypoints.Clear();
-            foreach (Transform child in transform)
+            if (trackWaypointRoot != null)
             {
-                Waypoints.Add(child);
+                Waypoints.Clear();
+                foreach (Transform child in trackWaypointRoot)
+                {
+                    Waypoints.Add(child);
+                }
+            }
+
+            if (aiWaypointRoot == null) return;
+            AIWaypoints.Clear();
+            foreach (Transform child in aiWaypointRoot)
+            {
+                AIWaypoints.Add(child);
             }
         }
 
         private void OnDrawGizmos()
         {
-            if (Waypoints == null || Waypoints.Count < 2) return;
+#if UNITY_EDITOR
+            SyncWaypointsWithHierarchy();
+#endif
 
-            Gizmos.color = gizmoColor;
-            for (var i = 0; i < Waypoints.Count; i++)
+            DrawWaypointGizmos(Waypoints, trackGizmoColor, trackWaypointRadius);
+            DrawWaypointGizmos(AIWaypoints, aiWaypointColor, aiWaypointRadius);
+        }
+
+        private static void DrawWaypointGizmos(List<Transform> waypoints, Color color, float radius)
+        {
+            if (waypoints == null || waypoints.Count < 2) return;
+
+            Gizmos.color = color;
+            for (var i = 0; i < waypoints.Count; i++)
             {
-                var currentWaypoint = Waypoints[i];
-                var nextWaypoint = Waypoints[(i + 1) % Waypoints.Count];
+                var currentWaypoint = waypoints[i];
 
-                Gizmos.DrawSphere(currentWaypoint.position, waypointRadius);
+                if (currentWaypoint == null) continue;
+
+                var nextWaypoint = waypoints[(i + 1) % waypoints.Count];
+                if (nextWaypoint == null) continue;
+
+                Gizmos.DrawSphere(currentWaypoint.position, radius);
                 Gizmos.DrawLine(currentWaypoint.position, nextWaypoint.position);
             }
         }
