@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RacingGame.Core;
 using UnityEngine;
@@ -11,15 +12,18 @@ namespace RacingGame.RacingEffects
         [SerializeField] private List<RacingEffect> availableEffects;
         [SerializeField] private float percentPerSecond = 4f;
 
+        public Action<RacingEffect> onEffectChanged;
+        
         private float _currentPercentage;
         private RacingEffect _currentEffect;
 
         private CarMovement _carMovement;
 
-        private void Awake()
+        private void Start()
         {
             _currentPercentage = 0;
             _currentEffect = availableEffects[Random.Range(0, availableEffects.Count)];
+            onEffectChanged?.Invoke(_currentEffect);
 
             _carMovement = GetComponent<CarMovement>();
         }
@@ -39,6 +43,7 @@ namespace RacingGame.RacingEffects
             _currentEffect.Apply(Mathf.FloorToInt(_currentPercentage), _carMovement);
             _currentPercentage = 0;
             _currentEffect = availableEffects[Random.Range(0, availableEffects.Count)];
+            onEffectChanged?.Invoke(_currentEffect);
         }
 
         private void IncreasePercentage(float deltaTime)
@@ -46,5 +51,7 @@ namespace RacingGame.RacingEffects
             _currentPercentage += percentPerSecond * deltaTime;
             _currentPercentage = Mathf.Clamp(_currentPercentage, 0, RacingEffect.MaxPercentage);
         }
+        
+        
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d78b2452cb1454a870d42dd4e8c18e, type: 3}
   m_Name: RocketEffect
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RacingEffects.RocketEffect
+  <Icon>k__BackingField: {fileID: 8166710274925509176, guid: 4e72e0cf98feeb845bac8aafcba15fe7, type: 3}
   rocketPrefab: {fileID: 1669471246608717888, guid: 8753834945336584cbb32e11751d7396, type: 3}
   positiveDuration: 2
   negativeDuration: 2

@@ -1126,6 +1126,26 @@ PrefabInstance:
       propertyPath: playerCarTracker
       value: 
       objectReference: {fileID: 1833157879}
+    - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6357341948854471786, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: playerCarTracker
       value: 
@@ -1144,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7908047538376410267, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 87
+      value: 96.65
       objectReference: {fileID: 0}
     - target: {fileID: 8091228239169269889, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Name
@@ -1154,6 +1174,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 67.65
       objectReference: {fileID: 0}
+    - target: {fileID: 8864920356929653977, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: playerEffectManager
+      value: 
+      objectReference: {fileID: 1310469176}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

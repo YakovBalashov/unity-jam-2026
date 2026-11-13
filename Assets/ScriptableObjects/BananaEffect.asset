@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a385a458428dd746bb1f24874decd4b, type: 3}
   m_Name: BananaEffect
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RacingEffects.BananaEffect
+  <Icon>k__BackingField: {fileID: -2615874204119335, guid: 3f4a311d03c5e764c9d3e686289b9ff7, type: 3}
   bananaPrefab: {fileID: 9148586278237795236, guid: 9cf6963c37549b14195ac1b982d16dae, type: 3}
   animationDuration: 2
   stunDuration: 2
