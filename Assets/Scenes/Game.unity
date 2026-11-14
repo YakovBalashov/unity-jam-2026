@@ -771,7 +771,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5374bb6574aecb54eb917abd742a19f7, type: 2}
   raceResultsUI: {fileID: 1952863717}
   raceUI: {fileID: 366317843}
-  playerStartingPosition: 4
   backButton: {fileID: 412924702}
   playerCamera: {fileID: 330585543}
   finishCamera: {fileID: 1747284271}
@@ -1313,6 +1312,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 263672918229773120, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_fontSize
+      value: 154.65
+      objectReference: {fileID: 0}
     - target: {fileID: 543200065266449287, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1753,6 +1756,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5836457626607790146, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: highlightColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836457626607790146, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: highlightColor.g
+      value: 0.35239178
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836457626607790146, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: highlightColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: showDuration
       value: 0.3
@@ -1843,7 +1858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7668289096332532437, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 89.2
+      value: 118.9
       objectReference: {fileID: 0}
     - target: {fileID: 7697285448349297334, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Camera
@@ -1919,11 +1934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7805151134891772211, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 106.3
+      value: 141.75
       objectReference: {fileID: 0}
     - target: {fileID: 7908047538376410267, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 96.65
+      value: 128.85
       objectReference: {fileID: 0}
     - target: {fileID: 8091228239169269889, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Name
@@ -1951,7 +1966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8292472245635017639, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 115.5
+      value: 157.85
       objectReference: {fileID: 0}
     - target: {fileID: 8292472245635017639, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontColor.b
@@ -1971,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8469484385066443261, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 67.65
+      value: 90.2
       objectReference: {fileID: 0}
     - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

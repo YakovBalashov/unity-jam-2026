@@ -8,16 +8,25 @@ namespace RacingGame.UI
     public class RaceResults : MonoBehaviour
     {
         [SerializeField] private string playerName = "YOU";
-        [SerializeField] private string highlightColor = "#FD9C00";
+        [SerializeField] private Color highlightColor = Color.darkOrange;
 
         private TextMeshProUGUI _resultsText;
         private readonly StringBuilder _stringBuilder = new();
+        private const float ReferenceHeight = 1080f;
+        private string _highlightHex;
+
 
         private void Awake()
         {
             _resultsText = GetComponent<TextMeshProUGUI>();
             _resultsText.richText = true;
             _resultsText.text = string.Empty;
+            
+            var referenceFontSize = _resultsText.fontSize;
+            
+            _highlightHex = ColorUtility.ToHtmlStringRGB(highlightColor);
+            
+            _resultsText.fontSize = referenceFontSize * Screen.height / ReferenceHeight;
         }
 
         public void Show(IReadOnlyList<(int position, string name, float time)> results)
@@ -28,7 +37,7 @@ namespace RacingGame.UI
                 var cleanName = carName.Split('(')[0].Trim();
                 var line = $"{position}. {FormatTime(time)} {cleanName}";
 
-                _stringBuilder.AppendLine(cleanName == playerName ? $"<color={highlightColor}>{line}</color>" : line);
+                _stringBuilder.AppendLine(cleanName == playerName ? $"<color=#{_highlightHex}>{line}</color>" : line);
             }
             _resultsText.text = _stringBuilder.ToString();
         }
