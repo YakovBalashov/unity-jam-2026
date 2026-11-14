@@ -1399,6 +1399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 720882073652208069, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 782931071285863373, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -1741,7 +1745,7 @@ PrefabInstance:
       objectReference: {fileID: 1310469176}
     - target: {fileID: 7668289096332532437, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 94.75
+      value: 89.2
       objectReference: {fileID: 0}
     - target: {fileID: 7697285448349297334, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Camera
