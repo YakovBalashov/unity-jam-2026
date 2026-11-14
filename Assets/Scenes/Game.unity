@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212338, y: -0.000000012376426, z: 0.000000001904914, w: 0.98836154}
-  m_LocalPosition: {x: 221, y: 8.473529, z: 69.231415}
+  m_LocalPosition: {x: 221, y: 77.10353, z: 69.231415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -421,6 +421,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &545544420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875152795872318413, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+  m_PrefabInstance: {fileID: 8774099217568467130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53837585b6f928a46a5c32b84c708c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacingGame.UI.RaceSettingsPanel
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2562201777933979933, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.97
+      value: 75.6
       objectReference: {fileID: 0}
     - target: {fileID: 2562201777933979933, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_LocalPosition.z
@@ -636,6 +647,10 @@ PrefabInstance:
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363471839407746851, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -688,7 +703,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.RaceManager
   raceTrack: {fileID: 1695449695}
   playerCar: {fileID: 1833157878}
-  pilotSelection: {fileID: 11400000, guid: 5374bb6574aecb54eb917abd742a19f7, type: 2}
+  pilotSelections:
+  - {fileID: 11400000, guid: 10decda0857df824fabe6adc5e077cd4, type: 2}
+  - {fileID: 11400000, guid: 26cc637175bcd0447a297e0e910a79cf, type: 2}
+  - {fileID: 11400000, guid: 5374bb6574aecb54eb917abd742a19f7, type: 2}
   raceResultsUI: {fileID: 1952863717}
   raceUI: {fileID: 366317843}
   playerStartingPosition: 4
@@ -710,6 +728,7 @@ MonoBehaviour:
   countdownUI: {fileID: 8774099217568467131}
   countdownSeconds: 3
   goString: GO!
+  raceSettingsPanel: {fileID: 545544420}
 --- !u!1001 &1695449694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,7 +945,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1408947965}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833157878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be58139788637f8488b4b2be0daaf39d, type: 3}
   m_Name: 
@@ -964,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302284629488124209, guid: 460d55ad3a27c7045b4fa014e42e70f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.473529
+      value: 77.10353
       objectReference: {fileID: 0}
     - target: {fileID: 6302284629488124209, guid: 460d55ad3a27c7045b4fa014e42e70f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1123,6 +1142,18 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1977041449182999188, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560547350249798801, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560547350249798801, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3174122196885775275, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSizeBase
       value: 70
@@ -1139,6 +1170,10 @@ PrefabInstance:
       propertyPath: playerCarTracker
       value: 
       objectReference: {fileID: 1833157879}
+    - target: {fileID: 3835598956254877209, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 4523004936778553631, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1159,14 +1194,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5001281703264081607, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001281703264081607, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6099873399732076034, guid: d061335470fc4734197d51982c339dc1, type: 3}
     - target: {fileID: 6357341948854471786, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: playerCarTracker
       value: 
       objectReference: {fileID: 1833157879}
+    - target: {fileID: 6806678984893247562, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806678984893247562, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6993028463482190888, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: effectManager
       value: 
       objectReference: {fileID: 1310469176}
+    - target: {fileID: 7668289096332532437, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_fontSize
+      value: 100.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7697285448349297334, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1186,6 +1241,10 @@ PrefabInstance:
     - target: {fileID: 8469484385066443261, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
       value: 67.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808135878451430796, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8864920356929653977, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: playerEffectManager

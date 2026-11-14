@@ -51,6 +51,11 @@ namespace RacingGame.Core
 
             TrackLength = distance;
         }
+        
+        public void SetLapCount(int lapCount)
+        {
+            LapCount = lapCount;
+        }
 
 #if UNITY_EDITOR
         private void SyncWaypointsWithHierarchy()

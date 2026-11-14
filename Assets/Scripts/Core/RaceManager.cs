@@ -13,7 +13,7 @@ namespace RacingGame.Core
     {
         [SerializeField] private RaceTrack raceTrack;
         [SerializeField] private GameObject playerCar;
-        [SerializeField] private PilotSelection pilotSelection;
+        [SerializeField] private List<PilotSelection> pilotSelections;
         [SerializeField] private RaceResults raceResultsUI;
         [SerializeField] private GameObject raceUI;
         [SerializeField] private int playerStartingPosition = 4;
@@ -28,6 +28,8 @@ namespace RacingGame.Core
         
         [SerializeField] private string goString = "GO!";
         
+        [SerializeField] private RaceSettingsPanel raceSettingsPanel;
+        
         private readonly List<CarTracker> _cars = new();
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
         private float _startTime;
@@ -35,13 +37,14 @@ namespace RacingGame.Core
         private bool _playerFinished = false;
 
         private readonly Random _random = new();
+        private Difficulty _currentDifficulty;
 
 
-        private void Start()
+        private void OnSetupConfirmed()
         {
             var safePlayerIndex = Mathf.Clamp(playerStartingPosition - 1, 0, raceTrack.StartingPositions.Count - 1);
 
-            var listOfPilots = CreateAIPilotList(pilotSelection);
+            var listOfPilots = CreateAIPilotList(pilotSelections[(int)_currentDifficulty]);
             var currentAIPrefabIndex = 0;
 
             for (var i = 0; i < raceTrack.StartingPositions.Count; i++)
@@ -63,6 +66,7 @@ namespace RacingGame.Core
                     var playerCarTracker = playerCar.GetComponent<CarTracker>();
                     _cars.Add(playerCarTracker);
                     playerCarTracker.Initialize(raceTrack);
+                    playerCarTracker.enabled = true;
                 }
                 else
                 {
@@ -149,15 +153,24 @@ namespace RacingGame.Core
                 _cars[i].CurrentPosition = i + 1;
             }
         }
+        
+        private void UpdateRaceSettings(int laps, Difficulty difficulty)
+        {
+            raceTrack.SetLapCount(laps);
+            _currentDifficulty = difficulty;
+            OnSetupConfirmed();
+        }
 
         private void OnEnable()
         {
             raceTrack.FinishTrigger.onFinishCrossed += HandleFinish;
+            raceSettingsPanel.StartPressed += UpdateRaceSettings;
         }
 
         private void OnDisable()
         {
             raceTrack.FinishTrigger.onFinishCrossed -= HandleFinish;
+            raceSettingsPanel.StartPressed -= UpdateRaceSettings;
         }
 
         private void HandleFinish(CarTracker carTracker)
