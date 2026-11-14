@@ -8,6 +8,12 @@ namespace RacingGame.Audio
         [SerializeField] private AudioClip[] clips;
         [SerializeField, Range(0f, 1f)] private float volume = 1f;
         [SerializeField] private Vector2 pitchRange = new(0.95f, 1.05f);
+        
+        public void Play(Vector3 position, bool isPlayer)
+        {
+            if (isPlayer) Play2D();
+            else Play(position);
+        }
 
         public void Play(Vector3 position)
         {

@@ -25,13 +25,13 @@ namespace RacingGame.RacingEffects
             var position = car.transform.position + flatForward * rocketSpawnOffset + Vector3.up * rocketSpawnHeight;
 
             Instantiate(rocketPrefab, position, Quaternion.LookRotation(flatForward, Vector3.up));
-            launchSound.Play2D();
+            launchSound.Play(position, IsPlayer(car));
         }
 
         protected override void ApplyNegative(CarMovement car)
         {
             car.ApplyExplosion(negativeStunDuration, burntMaterial, hopHeight, negativeHopDuration);
-            explosionSound.Play(car.transform.position);
+            explosionSound.Play(car.transform.position, IsPlayer(car));
         }
     }
 }

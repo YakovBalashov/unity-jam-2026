@@ -19,6 +19,11 @@ namespace RacingGame.RacingEffects
                 ApplyNegative(car);
             }
         }
+        
+        protected static bool IsPlayer(CarMovement car)
+        {
+            return car.TryGetComponent<PlayerController>(out _);
+        }
 
         protected abstract void ApplyPositive(CarMovement car);
         protected abstract void ApplyNegative(CarMovement car);
