@@ -7,12 +7,16 @@ namespace RacingGame.UI
 {
     public class RaceResults : MonoBehaviour
     {
+        [SerializeField] private string playerName = "YOU";
+        [SerializeField] private string highlightColor = "#FD9C00";
+
         private TextMeshProUGUI _resultsText;
         private readonly StringBuilder _stringBuilder = new();
 
         private void Awake()
         {
             _resultsText = GetComponent<TextMeshProUGUI>();
+            _resultsText.richText = true;
             _resultsText.text = string.Empty;
         }
 
@@ -21,7 +25,10 @@ namespace RacingGame.UI
             _stringBuilder.Clear();
             foreach (var (position, carName, time) in results)
             {
-                _stringBuilder.AppendLine($"{position}. {carName}  {FormatTime(time)}");
+                var cleanName = carName.Split('(')[0].Trim();
+                var line = $"{position}. {FormatTime(time)} {cleanName}";
+
+                _stringBuilder.AppendLine(cleanName == playerName ? $"<color={highlightColor}>{line}</color>" : line);
             }
             _resultsText.text = _stringBuilder.ToString();
         }

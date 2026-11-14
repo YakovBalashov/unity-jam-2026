@@ -1849,6 +1849,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 7709162974299566586, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709162974299566586, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.99215686
+      objectReference: {fileID: 0}
     - target: {fileID: 7721748713052220499, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
       value: 0.34901962
