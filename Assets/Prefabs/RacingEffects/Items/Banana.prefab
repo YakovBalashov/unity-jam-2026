@@ -624,6 +624,12 @@ MonoBehaviour:
   stunDuration: 0.15
   turns: 2
   hopHeight: 0.5
+  slipSound:
+    clips:
+    - {fileID: 8300000, guid: ce2adecbb001efc489a325d892e7a451, type: 3}
+    - {fileID: 8300000, guid: 652cf7277270a2949bf2b3fb2efcc93f, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
 --- !u!136 &-9107080049235375407
 CapsuleCollider:
   m_ObjectHideFlags: 0

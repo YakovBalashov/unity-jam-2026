@@ -1,3 +1,4 @@
+using RacingGame.Audio;
 using RacingGame.Core;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float hopHeight = 0.5f;
         [SerializeField] private Material burntMaterial;
         [SerializeField] private float lifetime = 10f;
+        [SerializeField] private SoundEffect explosionSound;
 
         private Vector3 _velocity;
 
@@ -29,6 +31,7 @@ namespace RacingGame.RacingEffects
         {
             var carMovement = other.GetComponentInParent<CarMovement>();
             if (carMovement != null) carMovement.ApplyExplosion(stunDuration, burntMaterial, hopHeight, hopDuration);
+            explosionSound.Play(transform.position);
             Destroy(gameObject);
         }
     }

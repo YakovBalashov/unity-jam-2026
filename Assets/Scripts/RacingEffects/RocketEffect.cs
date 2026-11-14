@@ -1,3 +1,4 @@
+using RacingGame.Audio;
 using RacingGame.Core;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float rocketSpawnOffset = 2f;
         [SerializeField] private Material burntMaterial;
         [SerializeField] private float rocketSpawnHeight = 0.5f;
+        [SerializeField] private SoundEffect launchSound;
+        [SerializeField] private SoundEffect explosionSound;
+
 
         protected override void ApplyPositive(CarMovement car)
         {
@@ -21,11 +25,13 @@ namespace RacingGame.RacingEffects
             var position = car.transform.position + flatForward * rocketSpawnOffset + Vector3.up * rocketSpawnHeight;
 
             Instantiate(rocketPrefab, position, Quaternion.LookRotation(flatForward, Vector3.up));
+            launchSound.Play2D();
         }
 
         protected override void ApplyNegative(CarMovement car)
         {
             car.ApplyExplosion(negativeStunDuration, burntMaterial, hopHeight, negativeHopDuration);
+            explosionSound.Play(car.transform.position);
         }
     }
 }

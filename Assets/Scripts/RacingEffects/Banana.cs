@@ -1,3 +1,4 @@
+using RacingGame.Audio;
 using RacingGame.Core;
 using UnityEngine;
 
@@ -9,12 +10,14 @@ namespace RacingGame.RacingEffects
         [SerializeField] private float stunDuration = 2f;
         [SerializeField] private int turns = 10;
         [SerializeField] private float hopHeight = 0.5f;
+        [SerializeField] private SoundEffect slipSound;
         
         private void OnTriggerEnter(Collider other)
         {
             var carMovement = other.GetComponentInParent<CarMovement>();
             if (carMovement == null) return;
             carMovement.ApplySpinOut(animationDuration, stunDuration, turns, hopHeight);
+            slipSound.Play(carMovement.transform.position);
             Destroy(gameObject);
         }
     }
