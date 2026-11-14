@@ -175,15 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff915cd7987878844bbdb55e259cff67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Audio.AudioManager
-  mixer: {fileID: 24100000, guid: 24dbf67eb3bcbbe48b89bd296629357f, type: 2}
-  musicSource: {fileID: 7194196491137479974}
-  sfxSourcePrefab: {fileID: 5270579463075239010}
   defaultMasterVolume: 0.138
   defaultMusicVolume: 0.138
   defaultSfxVolume: 0.138
+  mixer: {fileID: 24100000, guid: 24dbf67eb3bcbbe48b89bd296629357f, type: 2}
+  musicSource: {fileID: 7194196491137479974}
+  sfxSourcePrefab: {fileID: 5270579463075239010}
   sceneMusic:
-  - sceneName: WarZone
-    music: {fileID: 8300000, guid: 011e734d70d074d48992c7b91b567960, type: 3}
+  - sceneName: Game
+    tracks:
+    - {fileID: 8300000, guid: 011e734d70d074d48992c7b91b567960, type: 3}
+    - {fileID: 8300000, guid: 89a85df1b7e9ea046aedfdb9c3ed95a0, type: 3}
+    shuffle: 0
 --- !u!1001 &7526407374327520255
 PrefabInstance:
   m_ObjectHideFlags: 0

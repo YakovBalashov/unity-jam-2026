@@ -15,24 +15,32 @@ namespace RacingGame.Audio
     [DefaultExecutionOrder(-1000)]
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager Instance { get; private set; }
+        [System.Serializable]
+        private struct SceneMusicEntry
+        {
+            public string sceneName;
+            public AudioClip[] tracks;
+            public bool shuffle;
+        }
+        [Header("Default Volume")]
+        [SerializeField, Range(0f, 1f)] private float defaultMasterVolume = 1f;
+        [SerializeField, Range(0f, 1f)] private float defaultMusicVolume = 0.5f;
+        [SerializeField, Range(0f, 1f)] private float defaultSfxVolume = 0.8f;
+        
 
         [SerializeField] private AudioMixer mixer;
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource sfxSourcePrefab;
         
-        
-        [System.Serializable]
-        private struct SceneMusicEntry
-        {
-            public string sceneName;
-            public AudioClip music;
-        }
-
         [SerializeField] private SceneMusicEntry[] sceneMusic;
-
-
+        
+        private AudioClip[] _playlist;
+        private bool _shuffle;
+        private int _trackIndex = -1;
+        
         private const float MinVolume = 0.0001f;
+        public static AudioManager Instance { get; private set; }
+        
 
         private void Awake()
         {
@@ -55,21 +63,65 @@ namespace RacingGame.Audio
 
             OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
         }
+        
+        
 
+
+        private void Update()
+        {
+            if (Instance != this) return;
+            if (_playlist == null || _playlist.Length == 0) return;
+
+            if (!musicSource.isPlaying)
+                PlayNextTrack();
+        }
+
+        public void PlayPlaylist(AudioClip[] tracks, bool shuffle)
+        {
+            if (tracks == null || tracks.Length == 0) return;
+            if (_playlist == tracks && musicSource.isPlaying) return; 
+
+            _playlist = tracks;
+            _shuffle = shuffle;
+            _trackIndex = -1;
+            PlayNextTrack();
+        }
 
         public void PlayMusic(AudioClip clip)
         {
-            Debug.Log($"[Audio] PlayMusic: {(clip ? clip.name : "null")}");
             if (!clip) return;
-            if (musicSource.clip == clip && musicSource.isPlaying) return; 
+
+            _playlist = null;
+            if (musicSource.clip == clip && musicSource.isPlaying) return;
 
             musicSource.clip = clip;
+            musicSource.loop = true;
             musicSource.Play();
         }
 
         public void StopMusic()
         {
+            _playlist = null;
             musicSource.Stop();
+        }
+
+        private void PlayNextTrack()
+        {
+            if (_shuffle && _playlist.Length > 1)
+            {
+                int next;
+                do next = Random.Range(0, _playlist.Length);
+                while (next == _trackIndex);
+                _trackIndex = next;
+            }
+            else
+            {
+                _trackIndex = (_trackIndex + 1) % _playlist.Length;
+            }
+
+            musicSource.clip = _playlist[_trackIndex];
+            musicSource.loop = false;
+            musicSource.Play();
         }
 
         
@@ -108,7 +160,18 @@ namespace RacingGame.Audio
         
         public float GetVolume(VolumeChannel channel)
         {
-            return PlayerPrefs.GetFloat(GetPrefsKey(channel), 1f);
+            return PlayerPrefs.GetFloat(GetPrefsKey(channel), GetDefaultVolume(channel));
+        }
+
+        private float GetDefaultVolume(VolumeChannel channel)
+        {
+            return channel switch
+            {
+                VolumeChannel.Master => defaultMasterVolume,
+                VolumeChannel.Music => defaultMusicVolume,
+                VolumeChannel.SFX => defaultSfxVolume,
+                _ => 1f
+            };
         }
 
         public void SetVolume(VolumeChannel channel, float volume)
@@ -140,20 +203,16 @@ namespace RacingGame.Audio
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Debug.Log($"[Audio] OnSceneLoaded: '{scene.name}', записей: {sceneMusic.Length}");
             if (Instance != this) return;
 
             foreach (var entry in sceneMusic)
             {
-                Debug.Log($"[Audio] сравниваю с '{entry.sceneName}'");
                 if (entry.sceneName.Trim() == scene.name)
                 {
-                    PlayMusic(entry.music);
+                    PlayPlaylist(entry.tracks, entry.shuffle);
                     return;
                 }
             }
-
-            Debug.Log("[Audio] музыка для сцены не найдена");
         }
     }
 }
