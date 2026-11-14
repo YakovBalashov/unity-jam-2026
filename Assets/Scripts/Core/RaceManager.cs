@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RacingGame.AI;
+using RacingGame.Audio;
 using RacingGame.UI;
 using UnityEngine;
 using Random = System.Random;
@@ -29,6 +30,9 @@ namespace RacingGame.Core
         [SerializeField] private string goString = "GO!";
         
         [SerializeField] private RaceSettingsPanel raceSettingsPanel;
+        
+        [SerializeField] private SoundEffect countdownBeepSound;
+        [SerializeField] private SoundEffect goSound;
         
         private readonly List<CarTracker> _cars = new();
         private readonly Dictionary<CarTracker, float> _finishedCars = new();
@@ -89,11 +93,13 @@ namespace RacingGame.Core
             for (var i = countdownSeconds; i > 0; i--)
             {
                 countdownUI.Show(i.ToString());
+                countdownBeepSound.Play2D();
                 yield return new WaitForSeconds(1f);
             }
 
             goString = "GO!";
             countdownUI.Show(goString);
+            goSound.Play2D();
             _startTime = Time.time;          
             SetCarsControllable(true);
 

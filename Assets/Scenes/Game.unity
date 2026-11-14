@@ -492,6 +492,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1001 &1234153390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820004343411814045, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608550219758833348, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0979b5c3a794af84ab4bb96dae05f668, type: 3}
 --- !u!223 &1285372713 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7697285448349297334, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
@@ -646,15 +703,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
-      value: 8
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8363471839407746851, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
-      propertyPath: percentPerSecond
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -733,6 +786,16 @@ MonoBehaviour:
   countdownSeconds: 3
   goString: GO!
   raceSettingsPanel: {fileID: 545544420}
+  countdownBeepSound:
+    clips:
+    - {fileID: 8300000, guid: 9834f2a36d852224f8150ce90f57f4de, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
+  goSound:
+    clips:
+    - {fileID: 8300000, guid: 2bd4efbd21c02804b87cd456c79602de, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
 --- !u!1001 &1695449694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1434,7 +1497,7 @@ PrefabInstance:
       objectReference: {fileID: 1310469176}
     - target: {fileID: 7668289096332532437, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 100.35
+      value: 133.8
       objectReference: {fileID: 0}
     - target: {fileID: 7697285448349297334, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Camera
@@ -1451,6 +1514,10 @@ PrefabInstance:
     - target: {fileID: 8091228239169269889, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292472245635017639, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_fontSize
+      value: 157.85
       objectReference: {fileID: 0}
     - target: {fileID: 8469484385066443261, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
@@ -1485,6 +1552,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1607578827}
+  - {fileID: 1234153390}
   - {fileID: 8774099217568467130}
   - {fileID: 330585546}
   - {fileID: 1747284275}
