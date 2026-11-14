@@ -421,6 +421,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &412924702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3758525265777319089, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+  m_PrefabInstance: {fileID: 8774099217568467130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &545544420 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8875152795872318413, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
@@ -703,7 +708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
-      value: 50
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8363471839407746851, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_Enabled
@@ -767,6 +772,7 @@ MonoBehaviour:
   raceResultsUI: {fileID: 1952863717}
   raceUI: {fileID: 366317843}
   playerStartingPosition: 4
+  backButton: {fileID: 412924702}
   playerCamera: {fileID: 330585543}
   finishCamera: {fileID: 1747284271}
   mainCanvas: {fileID: 1285372713}
@@ -1431,6 +1437,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1614994924026379082, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_fontSize
+      value: 85.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1863331382926447174, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Color.b
       value: 0.32941177
@@ -1535,6 +1545,22 @@ PrefabInstance:
       propertyPath: playerCarTracker
       value: 
       objectReference: {fileID: 1833157879}
+    - target: {fileID: 3393463336079177442, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393463336079177442, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393463336079177442, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393463336079177442, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 3498445501930127418, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1547,9 +1573,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3758525265777319089, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3835598956254877209, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025246173024312705, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025246173024312705, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4281029280603126857, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontColor.b
@@ -1926,6 +1964,34 @@ PrefabInstance:
     - target: {fileID: 8469484385066443261, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
       value: 67.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1607578828}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RacingGame.Core.RaceManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541503776585811358, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8808135878451430796, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_AnchorMax.y

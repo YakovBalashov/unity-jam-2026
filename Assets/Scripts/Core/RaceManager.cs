@@ -7,6 +7,7 @@ using UnityEngine;
 using Random = System.Random;
 using RacingGame.Extensions;
 using RacingGame.RacingEffects;
+using UnityEngine.SceneManagement;
 
 namespace RacingGame.Core
 {
@@ -18,6 +19,7 @@ namespace RacingGame.Core
         [SerializeField] private RaceResults raceResultsUI;
         [SerializeField] private GameObject raceUI;
         [SerializeField] private int playerStartingPosition = 4;
+        [SerializeField] private GameObject backButton;
 
         [SerializeField] private GameObject playerCamera;
         [SerializeField] private GameObject finishCamera;
@@ -42,6 +44,7 @@ namespace RacingGame.Core
 
         private readonly Random _random = new();
         private Difficulty _currentDifficulty;
+        private const string GameSceneName = "MainMenu";
 
 
         private void OnSetupConfirmed()
@@ -199,6 +202,12 @@ namespace RacingGame.Core
 
             if (!_playerFinished) return;
             raceResultsUI.Show(_results);
+            backButton.SetActive(true);
+        }
+        
+        public void ReturnToMainMenu()
+        {
+            SceneManager.LoadScene(GameSceneName);
         }
     }
 }
