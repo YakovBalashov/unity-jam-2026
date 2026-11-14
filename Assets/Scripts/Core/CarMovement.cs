@@ -70,6 +70,10 @@ namespace RacingGame.Core
 
         private float SurfaceSpeedMultiplier => _groundSurface ? _groundSurface.SpeedMultiplier : 1f;
         private float SurfaceGripMultiplier => _groundSurface ? _groundSurface.GripMultiplier : 1f;
+        
+        public float CurrentSpeed { get; private set; }
+        public float MaxSpeed => maxSpeed;
+        public float ThrottleInput => _speedInput;
 
 
         public void Initialize(float newAcceleration, float newMaxSpeed)
@@ -136,6 +140,7 @@ namespace RacingGame.Core
             {
                 _rigidbody.angularVelocity = Vector3.zero;
                 StopCar();
+                CurrentSpeed = 0f;
                 return;
             }
 
@@ -154,7 +159,7 @@ namespace RacingGame.Core
             }
 
             _rigidbody.angularVelocity = new Vector3(0f, turnRate * Mathf.Deg2Rad, 0f);
-
+            CurrentSpeed = Mathf.Abs(forwardSpeed);
             UpdateFrontWheels(forwardSpeed);
         }
 
