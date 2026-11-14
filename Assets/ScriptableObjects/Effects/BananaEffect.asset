@@ -19,3 +19,9 @@ MonoBehaviour:
   turns: 1
   hopHeight: 0.5
   bananaSpawnOffset: 2
+  slipSound:
+    clips:
+    - {fileID: 8300000, guid: ce2adecbb001efc489a325d892e7a451, type: 3}
+    - {fileID: 8300000, guid: 652cf7277270a2949bf2b3fb2efcc93f, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}

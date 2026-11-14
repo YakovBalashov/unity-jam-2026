@@ -20,3 +20,14 @@ MonoBehaviour:
   hopHeight: 0.8
   rocketSpawnOffset: 2
   burntMaterial: {fileID: 2100000, guid: 96d92f628462b3f4d88d9d62efe7375d, type: 2}
+  rocketSpawnHeight: 0.5
+  launchSound:
+    clips:
+    - {fileID: 8300000, guid: a2dae7c78617dc143aeb22250d0dc4f9, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
+  explosionSound:
+    clips:
+    - {fileID: 8300000, guid: c46d2e0364919fc46b5b80af2159f4ec, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
