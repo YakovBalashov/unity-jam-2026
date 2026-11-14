@@ -18,7 +18,6 @@ namespace RacingGame.Core
         [SerializeField] private List<PilotSelection> pilotSelections;
         [SerializeField] private RaceResults raceResultsUI;
         [SerializeField] private GameObject raceUI;
-        [SerializeField] private int playerStartingPosition = 4;
         [SerializeField] private GameObject backButton;
 
         [SerializeField] private GameObject playerCamera;
@@ -49,15 +48,16 @@ namespace RacingGame.Core
 
         private void OnSetupConfirmed()
         {
-            var safePlayerIndex = Mathf.Clamp(playerStartingPosition - 1, 0, raceTrack.StartingPositions.Count - 1);
-
             var listOfPilots = CreateAIPilotList(pilotSelections[(int)_currentDifficulty]);
             var currentAIPrefabIndex = 0;
-
+            
+            var carCount = Mathf.Min(raceTrack.StartingPositions.Count, listOfPilots.Count + 1);
+            var playerStartingPosition = _random.Range(0, carCount);
+            
             for (var i = 0; i < raceTrack.StartingPositions.Count; i++)
             {
                 var startingPosition = raceTrack.StartingPositions[i];
-                if (i == safePlayerIndex)
+                if (i == playerStartingPosition)
                 {
                     if (playerCar.TryGetComponent<Rigidbody>(out var rb))
                     {
