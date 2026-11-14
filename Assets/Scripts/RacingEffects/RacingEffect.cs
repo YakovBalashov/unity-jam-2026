@@ -8,16 +8,15 @@ namespace RacingGame.RacingEffects
         public const int MaxPercentage = 100;
         [field: SerializeField] public Sprite Icon { get; private set; }
 
-        public void Apply(int positivePercentage, CarMovement car)
+        public bool Apply(int positivePercentage, CarMovement car)
         {
             if (Random.Range(0, MaxPercentage) < positivePercentage)
             {
                 ApplyPositive(car);
+                return true;
             }
-            else
-            {
-                ApplyNegative(car);
-            }
+            ApplyNegative(car);
+            return false;
         }
         
         protected static bool IsPlayer(CarMovement car)

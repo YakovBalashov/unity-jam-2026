@@ -18,6 +18,8 @@ namespace RacingGame.RacingEffects
         private RacingEffect _currentEffect;
 
         private CarMovement _carMovement;
+        
+        public Action<bool> onEffectApplied;
 
         private void Start()
         {
@@ -40,10 +42,11 @@ namespace RacingGame.RacingEffects
 
         public void ApplyCurrentEffect()
         {
-            _currentEffect.Apply(Mathf.FloorToInt(_currentPercentage), _carMovement);
+            var result = _currentEffect.Apply(Mathf.FloorToInt(_currentPercentage), _carMovement);
             _currentPercentage = 0;
             _currentEffect = availableEffects[Random.Range(0, availableEffects.Count)];
             onEffectChanged?.Invoke(_currentEffect);
+            onEffectApplied?.Invoke(result);
         }
 
         private void IncreasePercentage(float deltaTime)

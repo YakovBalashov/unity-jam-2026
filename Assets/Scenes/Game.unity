@@ -703,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584742236650381432, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: percentPerSecond
-      value: 8
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8363471839407746851, guid: fb5ff2c87b548c04097e88e2d9635682, type: 3}
       propertyPath: m_Enabled
@@ -1535,6 +1535,18 @@ PrefabInstance:
       propertyPath: playerCarTracker
       value: 
       objectReference: {fileID: 1833157879}
+    - target: {fileID: 3498445501930127418, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613734611855441116, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613734611855441116, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3835598956254877209, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
       value: 36
@@ -1699,6 +1711,50 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.3114155
       objectReference: {fileID: 0}
+    - target: {fileID: 5486072607316897436, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: showDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: negativeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: negativeColor.b
+      value: 0.033285867
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: negativeColor.g
+      value: 0.0535677
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: negativeColor.r
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: positiveColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: positiveColor.b
+      value: 0.079065636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: positiveColor.g
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: positiveColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315302745100029470, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: playerEffectManager
+      value: 
+      objectReference: {fileID: 1310469176}
     - target: {fileID: 6357341948854471786, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: playerCarTracker
       value: 
@@ -1743,6 +1799,10 @@ PrefabInstance:
       propertyPath: effectManager
       value: 
       objectReference: {fileID: 1310469176}
+    - target: {fileID: 7050515321040628287, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7668289096332532437, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
       value: 89.2
@@ -1813,7 +1873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7805151134891772211, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
-      value: 116
+      value: 106.3
       objectReference: {fileID: 0}
     - target: {fileID: 7908047538376410267, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
@@ -1834,6 +1894,14 @@ PrefabInstance:
     - target: {fileID: 8119920937958689072, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_Color.r
       value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257913456877334649, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257913456877334649, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8292472245635017639, guid: 023f393bd803394409d3c48e7451cde6, type: 3}
       propertyPath: m_fontSize
