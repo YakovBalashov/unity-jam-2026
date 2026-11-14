@@ -178,6 +178,9 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 24dbf67eb3bcbbe48b89bd296629357f, type: 2}
   musicSource: {fileID: 7194196491137479974}
   sfxSourcePrefab: {fileID: 5270579463075239010}
+  defaultMasterVolume: 0.138
+  defaultMusicVolume: 0.138
+  defaultSfxVolume: 0.138
   sceneMusic:
   - sceneName: WarZone
     music: {fileID: 8300000, guid: 011e734d70d074d48992c7b91b567960, type: 3}

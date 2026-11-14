@@ -144,8 +144,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0.27
-  MinDistance: 3
-  MaxDistance: 40
+  MinDistance: 1
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -232,13 +232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfedc9b634de8cf42a11ac5d5e4f1697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RacingGame.Audio.EngineSound
-  car: {fileID: 0}
-  idlePitch: 0.7
+  car: {fileID: 4232746897173028319}
+  idlePitch: 0.9
   maxPitch: 1.8
   throttlePitchBoost: 0.15
   idleVolume: 0.1
-  throttleVolume: 0.3
-  coastVolume: 0.2
+  throttleVolume: 0.1
+  coastVolume: 0.1
   pitchSmoothing: 6
   volumeSmoothing: 8
 --- !u!1 &1682951334999120822
